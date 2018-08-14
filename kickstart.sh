@@ -9,4 +9,4 @@ cd ~/repo
 
 git clone https://github.com/matteobarbieri/qol.git
 
-# bash qol/setup_lubuntu.sh
+# bash ~/repo/qol/setup-scripts/setup_lubuntu.sh
