@@ -2,6 +2,10 @@
 
 ALIASES_FILE=~/.aliases
 
+# Location of the script
+SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
+
+
 ######################
 #### Install packages
 ######################
