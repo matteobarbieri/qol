@@ -9,7 +9,7 @@ Here is where this set of scripts and resources comes in handy!
 
 This repository consists of several (theoretically) idependent scripts which take care of different parts: installing base packages, setting up a powerful yet readable shell prompt, installing anaconda and creating standard environments and so on.
 
-But hey! How do I clone a repository if the 
+But hey! How do I clone a repository if the
 
 Don't panic, I got you covered: use the following code snippet to just install git and clone this repo. Come on, it's just **one** line, I'm pretty sure you can remember it :)
 
@@ -42,6 +42,20 @@ Include a shell script which installs most common packages such as `git`, `tmux`
 
 Once zsh has been installed, configure it to use `antigen` to manage the various plugins (mainly `powerlevel9k`)
 
+#### tl;dr
+
+Here is how your prompt will look like after running this component of the setup:
+
+![](https://raw.githubusercontent.com/matteobarbieri/qol/master/screenshots/prompt-powerlevel9k.png)
+
+
 ### Color scheme for terminal
 
 A custom color scheme for the `xfce4-terminal` is installed.
+colorschemes
+dotfiles
+kickstart.sh
+LICENSE
+newfile.sh
+README.md
+setup-scripts
