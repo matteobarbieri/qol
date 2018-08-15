@@ -39,7 +39,8 @@ POWERLEVEL9K_STATUS_ERROR_BACKGROUND='red'
 POWERLEVEL9K_STATUS_ERROR_FOREGROUND='white'
 
 # Battery colors and icons
-POWERLEVEL9K_BATTERY_STAGES=( $'\uf244 ' $'\uf243 ' $'\uf242 ' $'\uf241 ' $'\uf240 ' )
+# The first and last symbols are repeated twice so that they're triggered a bit earlier
+POWERLEVEL9K_BATTERY_STAGES=( $'\uf244 ' $'\uf244 ' $'\uf243 ' $'\uf242 ' $'\uf241 ' $'\uf240 ' $'\uf240 ' )
 POWERLEVEL9K_BATTERY_CHARGING='107'
 POWERLEVEL9K_BATTERY_CHARGED='blue'
 POWERLEVEL9K_BATTERY_LOW_THRESHOLD='30'

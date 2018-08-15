@@ -1,8 +1,12 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# required for reasons possibly related to colors in TMUX
 export TERM='xterm-256color'
-source ~/.fonts/*.sh
+
+# Old import for simple powerline fonts
+# TODO possibly remove in the future
+# source ~/.fonts/*.sh
 
 source ~/antigen.zsh
 antigen use oh-my-zsh
@@ -13,33 +17,17 @@ antigen bundle pip
 antigen bundle lein
 antigen bundle command-not-found
 
+# Syntax highlighting bundle.
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+# Load custom powerlevel9k prompt configuration
 source ~/.powerlevelrc
 
-# antigen theme carloscuesta/materialshell zsh/materialshell
+# Use the powerlevel9k theme for a fancy prompt
 antigen theme bhilburn/powerlevel9k powerlevel9k
 
+# Apply antigen
 antigen apply
-
-
-# Path to your oh-my-zsh installation.
-# export ZSH="/home/matteo/.oh-my-zsh"
-
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'.ll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-#
-# ZSH_THEME="robbyrussell" # default theme
-#ZSH_THEME="igeek"
-# ZSH_THEME="gnzh"
-#ZSH_THEME="spaceship"
-#ZSH_THEME="agnosterzak"
-
-# Set list of themes to load
-# Setting this variable when ZSH_THEME=random
-# cause zsh load theme from this variable instead of
-# looking in ~/.oh-my-zsh/themes/
-# An empty array have no effect
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -121,9 +109,6 @@ plugins=(
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
-
-# added by Miniconda3 installer
-export PATH="/home/matteo/miniconda3/bin:$PATH"
 
 # Custom aliases
 source ~/.aliases

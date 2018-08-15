@@ -6,31 +6,49 @@ ALIASES_FILE=~/.aliases
 #### Install anaconda
 ######################
 
-# Download and install (press yes a couple of times)
+create_standard_condaenv()
+{
+  # Create a conda environment with standard packages
+  # (jupyter numpy scikit-learn seaborn)
 
-cd ~/Downloads
-wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+  # Python version is passed as a parameter
+  PYTHON_VERSION=$1
 
-$SHELL Miniconda3-latest-Linux-x86_64.sh
+  ENV_NAME="py${PYTHON_VERSION}"
 
-# Update, just in case
-conda update -n base conda
+  conda create --name $ENV_NAME python=PYTHON_VERSION
+  . activate $ENV_NAME
+  conda install jupyter numpy scikit-learn seaborn
+  . deactivate
+}
 
-# Create base environments (one at a time)
+setup_anaconda()
+{
+  # Download and install (press yes a couple of times)
 
-cd
+  # Save the name of the file in a variable for further use
+  ANACONDA_INSTALL_SCRIPT=Miniconda3-latest-Linux-x86_64.sh
 
-# Version for python 2
-conda create --name py2 python=2
-. activate py2
-conda install jupyter numpy scikit-learn seaborn
-. deactivate
+  wget "https://repo.continuum.io/miniconda/${ANACONDA_INSTALL_SCRIPT}" \
+  -O "~/Downloads/${ANACONDA_INSTALL_SCRIPT}"
 
-# Version for python 3
-conda create --name py3 python=3
-. activate py3
-conda install jupyter numpy scikit-learn seaborn
-. deactivate
+  $SHELL Miniconda3-latest-Linux-x86_64.sh
 
-# Create alias for jupyter on tmux
-echo "alias jup='jupyter notebook --no-browser --ip=\"*\"'" >> $ALIASES_FILE
+  # Update, just in case
+  conda update -n base conda
+
+  # Create base environments (one at a time)
+
+  # Version for python 2
+  create_standard_condaenv 2
+
+  # Version for python 3
+  create_standard_condaenv 3
+
+  # Create alias for jupyter so that it does not open a browser window
+  # (useful for tmux sessions) and which can be accessed remotely without
+  # the need to create tunnels
+  echo "alias jup='jupyter notebook --no-browser --ip=\"*\"'" >> $ALIASES_FILE
+
+  echo "Anaconda setup complete"
+}

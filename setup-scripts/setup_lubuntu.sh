@@ -2,14 +2,16 @@
 
 ALIASES_FILE=~/.aliases
 
-# $SHELL
+# Update just in case
+sudo apt update
 
 # Location of the script. NOTE: does not have trailing '/'
 # It should probably look something like /home/user/repo/qol/setup_scripts
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 
 # Core stuff (tmux, htop et similia)
-$SHELL "${SCRIPTPATH}/setup_core.sh"
+source "${SCRIPTPATH}/setup_core.sh"
+setup_core $ALIASES_FILE
 
 # zsh, antigen and the related theme
 # TODO
@@ -21,4 +23,7 @@ $SHELL "${SCRIPTPATH}/setup_core.sh"
 # TODO
 
 # Desktop stuff (docky, dmenu, Google Chrome...)
+# TODO
+
+# Xfce terminal and color schemes
 # TODO
