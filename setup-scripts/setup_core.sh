@@ -11,7 +11,12 @@ ALIASES_FILE=~/.aliases
 # Install git, vim, tmux, suckless-tools (includes dmenu), openssh-server,
 # cmake, c
 sudo apt install \
-git tmux wget openssh-server cmake-curses-gui \
+git \
+tmux \
+htop \
+wget \
+openssh-server \
+cmake-curses-gui \
 cmake pkg-config
 
 # Create alias for tmux

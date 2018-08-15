@@ -9,7 +9,9 @@ ALIASES_FILE=~/.aliases
 # Install git, vim, tmux, suckless-tools (includes dmenu), openssh-server,
 # cmake, c
 sudo apt install \
-suckless-tools docky
+xcompmgr \
+suckless-tools \
+docky
 
 # Download and install Google Chrome
 cd ~/Downloads
