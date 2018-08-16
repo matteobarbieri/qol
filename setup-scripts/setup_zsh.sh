@@ -28,7 +28,7 @@ install_nerdfonts()
   mkdir -p ~/.local/share/fonts 2> /dev/null || echo "Local fonts folder already exists"
 
   # Unzip the ttf files directly in that folder
-  unzip "~/Downloads/${FONT_NAME}.zip" -d ~/.local/share/fonts
+  unzip ~"/Downloads/${FONT_NAME}.zip" -d ~/.local/share/fonts
 
   # Refresh font cache
   fc-cache -fv
@@ -76,6 +76,7 @@ setup_zsh()
   ZSH=`which zsh`
 
   # change the default shell to zsh
+  echo "Enter user password to change the current shell to zsh"
   chsh -s $ZSH # (need to enter user password)
 
   # change the SHELL environment variable
