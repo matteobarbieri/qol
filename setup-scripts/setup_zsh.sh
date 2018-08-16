@@ -57,7 +57,7 @@ install_antigen()
   cp "${SCRIPTPATH}/../dotfiles/zsh/.zshrc" ~/.zshrc
 
   # Backup possibly existing ~/.powerlevelrc file
-  if [ -f ~/powerlevelrc ]; then
+  if [ -f ~/.powerlevelrc ]; then
     echo "\e[93mBacking up existing ~/.powerlevelrc file to ~/.powerlevelrc.pre-qol\e[0m"
     cp ~/.powerlevelrc ~/.powerlevelrc.pre-qol
   fi
