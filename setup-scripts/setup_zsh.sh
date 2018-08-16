@@ -42,11 +42,25 @@ install_antigen()
   # Download the latest stable antigen release
   wget git.io/antigen -O ~/antigen.zsh
 
-  # Download and install nerdfonts
+  # Download and install nerdfonts, passing the font name as parameter
   install_nerdfonts Hack
+
+  # TODO repeated code, create function
+
+  # Backup possibly existing ~/.zshrc file
+  if [ -f ~/.zshrc ]; then
+    echo "Backing up existing ~/.zshrc file to ~/.zshrc.pre-qol"
+    cp ~/.zshrc ~/.zshrc.pre-qol
+  fi
 
   # Copy the .zshrc
   cp "${SCRIPTPATH}/../dotfiles/zsh/.zshrc" ~/.zshrc
+
+  # Backup possibly existing ~/.powerlevelrc file
+  if [ -f ~/powerlevelrc ]; then
+    echo "Backing up existing ~/.powerlevelrc file to ~/.powerlevelrc.pre-qol"
+    cp ~/.powerlevelrc ~/.powerlevelrc.pre-qol
+  fi
 
   # Copy the configuration file for the powerlevel9k theme
   # (adds a very fancy prompt)
