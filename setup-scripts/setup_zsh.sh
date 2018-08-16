@@ -15,7 +15,7 @@ install_nerdfonts()
   # Pass the font name (e.g. 'Hack')
   FONT_NAME=$1
 
-  echo "Installing nerdfonts '${FONT_NAME}'"
+  echo -e "\e[92mInstalling nerdfonts '${FONT_NAME}'"
 
   # Download the font
   wget \
@@ -33,7 +33,7 @@ install_nerdfonts()
   # Refresh font cache
   fc-cache -fv
 
-  echo "Fonts installed, manually change it in the terminal in order to properly display non standard glyphs"
+  echo -e "\e[92mFonts installed, manually change it in the terminal in order to properly display non standard glyphs"
 
 }
 
@@ -81,11 +81,6 @@ setup_zsh()
 
   # change the SHELL environment variable
   export SHELL=$ZSH
-
-  # Install one font from the nerdfonts patched family
-  FONT=Hack
-
-  install_nerdfonts $FONT
 
   # Install antigen and copy configuration files for zsh/powerlevel9k
   install_antigen
