@@ -40,10 +40,10 @@ install_nerdfonts()
 install_antigen()
 {
   # Download the latest stable antigen release
-  curl -L git.io/antigen > ~/antigen.zsh
+  wget git.io/antigen -O ~/antigen.zsh
 
   # Download and install nerdfonts
-  install_nerdfonts
+  install_nerdfonts Hack
 
   # Copy the .zshrc
   cp "${SCRIPTPATH}/../dotfiles/zsh/.zshrc" ~/.zshrc
@@ -74,6 +74,5 @@ setup_zsh()
 
   # Install antigen and copy configuration files for zsh/powerlevel9k
   install_antigen
-
 
 }
