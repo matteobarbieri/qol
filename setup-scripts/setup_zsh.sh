@@ -15,7 +15,7 @@ install_nerdfonts()
   # Pass the font name (e.g. 'Hack')
   FONT_NAME=$1
 
-  echo -e "\e[92mInstalling nerdfonts '${FONT_NAME}'"
+  echo -e "\e[92mInstalling nerdfonts (selected font: ${FONT_NAME})\e[0m"
 
   # Download the font
   wget \
@@ -25,7 +25,7 @@ install_nerdfonts()
   # Install the font in the local fonts folder
 
   # Create the folder if it does not already exists
-  mkdir -p ~/.local/share/fonts 2> /dev/null || echo "Local fonts folder already exists"
+  mkdir -p ~/.local/share/fonts 2> /dev/null || echo "\e[93mLocal fonts folder already exists\e[0m"
 
   # Unzip the ttf files directly in that folder
   unzip ~"/Downloads/${FONT_NAME}.zip" -d ~/.local/share/fonts
@@ -33,7 +33,7 @@ install_nerdfonts()
   # Refresh font cache
   fc-cache -fv
 
-  echo -e "\e[92mFonts installed, manually change it in the terminal in order to properly display non standard glyphs"
+  echo -e "\e[92mFonts installed, manually change it in the terminal in order to properly display non standard glyphs\e[0m"
 
 }
 
@@ -49,7 +49,7 @@ install_antigen()
 
   # Backup possibly existing ~/.zshrc file
   if [ -f ~/.zshrc ]; then
-    echo "Backing up existing ~/.zshrc file to ~/.zshrc.pre-qol"
+    echo "\e[93mBacking up existing ~/.zshrc file to ~/.zshrc.pre-qol\e[0m"
     cp ~/.zshrc ~/.zshrc.pre-qol
   fi
 
@@ -58,7 +58,7 @@ install_antigen()
 
   # Backup possibly existing ~/.powerlevelrc file
   if [ -f ~/powerlevelrc ]; then
-    echo "Backing up existing ~/.powerlevelrc file to ~/.powerlevelrc.pre-qol"
+    echo "\e[93mBacking up existing ~/.powerlevelrc file to ~/.powerlevelrc.pre-qol\e[0m"
     cp ~/.powerlevelrc ~/.powerlevelrc.pre-qol
   fi
 
@@ -76,7 +76,7 @@ setup_zsh()
   ZSH=`which zsh`
 
   # change the default shell to zsh
-  echo "Enter user password to change the current shell to zsh"
+  echo "\e[92mEnter user password to change the current shell to zsh\e[0m"
   chsh -s $ZSH # (need to enter user password)
 
   # change the SHELL environment variable
