@@ -20,7 +20,7 @@ install_nerdfonts()
   # Download the font
   wget \
   "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/${FONT_NAME}.zip" \
-  -O "~/Downloads/${FONT_NAME}.zip"
+  -O ~"/Downloads/${FONT_NAME}.zip"
 
   # Install the font in the local fonts folder
 
