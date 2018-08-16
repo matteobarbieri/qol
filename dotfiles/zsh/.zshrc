@@ -112,6 +112,3 @@ plugins=(
 
 # Custom aliases
 source ~/.aliases
-
-# Keyboard layout
-source ~/.keyboard_layout
