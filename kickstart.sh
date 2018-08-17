@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# Just install git (and vim, in case there is need to edit files on the spot), clone the repository and start the actual installation process
+# Just install git, clone the repository and start the actual installation process
 
-sudo apt install git vim
+sudo apt install git
 
 mkdir ~/repo 2> /dev/null || echo "Directory ~/repo already exists"
 cd ~/repo

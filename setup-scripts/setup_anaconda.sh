@@ -30,7 +30,7 @@ setup_anaconda()
   ANACONDA_INSTALL_SCRIPT=Miniconda3-latest-Linux-x86_64.sh
 
   wget "https://repo.continuum.io/miniconda/${ANACONDA_INSTALL_SCRIPT}" \
-  -O "~/Downloads/${ANACONDA_INSTALL_SCRIPT}"
+  -O "${HOME}/Downloads/${ANACONDA_INSTALL_SCRIPT}"
 
   $SHELL Miniconda3-latest-Linux-x86_64.sh
 
@@ -50,5 +50,5 @@ setup_anaconda()
   # the need to create tunnels
   echo "alias jup='jupyter notebook --no-browser --ip=\"*\"'" >> $ALIASES_FILE
 
-  echo "Anaconda setup complete"
+  echo -e "\e[93mAnaconda setup complete\e[0m"
 }

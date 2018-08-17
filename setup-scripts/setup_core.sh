@@ -2,15 +2,15 @@
 
 # Core packages such as git, tmux and openssh
 
-######################
-#### Install packages
-######################
-
 setup_core()
 {
 
   # Read the aliases file path as first parameter
   ALIASES_FILE=$1
+
+  ######################
+  #### Install packages
+  ######################
 
   # Install git, vim, tmux, suckless-tools (includes dmenu), openssh-server,
   # cmake, c
