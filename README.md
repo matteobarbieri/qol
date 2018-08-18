@@ -38,9 +38,15 @@ Inside folder `setup-scripts` you will find a script which will launch the insta
 
 Include a shell script which installs most common packages such as `git`, `tmux`, `google chrome` etc.
 
-### Shell install script
+### Shell (`zsh`)
 
-Once zsh has been installed, configure it to use `antigen` to manage the various plugins (mainly `powerlevel9k`)
+Install zsh and set it as default shell (might require logging back in/rebooting for changes to take place).
+
+Moreover, configure it to use `antigen` to manage the various plugins (mainly the `powerlevel9k` theme for the `oh-my-zsh` bundle and the `zsh-syntax-highlight` plugin). 
+
+Since the `powerlevel9k` theme requires the installation of fonts with special glyphs which are not available normally (`nerdfonts`), also take care of properly installing them (also recreating font cache).
+
+The effect of such changes is shown in the screenshot below (note: uses the color `materialshell-dark` color scheme, also included in this repository and installed by the `terminal` component.).
 
 #### tl;dr
 
@@ -48,14 +54,37 @@ Here is how your prompt will look like after running this component of the setup
 
 ![](https://raw.githubusercontent.com/matteobarbieri/qol/master/screenshots/prompt-powerlevel9k.png)
 
+### Terminal emulator
 
-### Color scheme for terminal
+#### tl;dr
 
-A custom color scheme for the `xfce4-terminal` is installed.
-colorschemes
-dotfiles
-kickstart.sh
-LICENSE
-newfile.sh
-README.md
-setup-scripts
+Install `xfce4-terminal` and copy in the local configuration folder (the default location is `~/.local/share/xfce4/terminal/colorschemes`) the two colorschemes included in this repository, `materialshell-oceanic` and `materialshell-dark`, from https://github.com/carloscuesta/materialshell.
+
+### `vim`
+
+#### tl;dr
+
+Install `vim` and the `awesome_vimrc` plugin from https://github.com/amix/vimrc, plus the `monokai` color scheme (and set it as default).
+
+### Desktop
+
+#### tl;dr
+
+Install packages `suckless-tools` (include the `dmenu` program), `xcompmgr` and `docky`.
+
+### Anaconda
+
+#### tl;dr
+
+Install the latest `miniconda` version and create two standard virtual environments (one for `python 2.*` and the other one for `python 3.*`) that can later be cloned.
+
+Note: this component should be installed _after_ the shell component has been configured, so that the correct `.*rc` is properly altered by the installation to include the path to `anaconda` binaries in the `$PATH` environment variable.
+
+The virtual enviromnents include the following packages:
+
+ * `numpy`
+ * `scikit-learn`
+ * `jupyter`
+ * `seaborn`
+
+Moreover, create an _alias_ for `jupyter notebook` so that it can be accessed remotely.
