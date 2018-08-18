@@ -32,7 +32,7 @@ setup_anaconda()
   wget "https://repo.continuum.io/miniconda/${ANACONDA_INSTALL_SCRIPT}" \
   -O "${HOME}/Downloads/${ANACONDA_INSTALL_SCRIPT}"
 
-  $SHELL Miniconda3-latest-Linux-x86_64.sh
+  $SHELL "${HOME}/Downloads/${ANACONDA_INSTALL_SCRIPT}"
 
   # Update, just in case
   conda update -n base conda
