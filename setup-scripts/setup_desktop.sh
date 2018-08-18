@@ -2,21 +2,31 @@
 
 ALIASES_FILE=~/.aliases
 
-######################
-#### Install packages
-######################
+install_google_chrome()
+{
+  # Download and install Google Chrome
+  wget \
+  https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
+  -O "$HOME/Downloads/google-chrome-stable_current_amd64.deb"
 
-# Install git, vim, tmux, suckless-tools (includes dmenu), openssh-server,
-# cmake, c
-sudo apt install \
-xcompmgr \
-suckless-tools \
-docky
+  sudo dpkg -i "$HOME/Downloads/google-chrome-stable_current_amd64.deb"
+}
 
-# Download and install Google Chrome
-cd ~/Downloads
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+setup_desktop()
+{
+  ######################
+  #### Install packages
+  ######################
 
-sudo dpkg -i google-chrome-stable_current_amd64.deb
+  # Install suckless-tools (includes dmenu), xcompmgr and docky
+  sudo apt install \
+  xcompmgr \
+  suckless-tools \
+  docky
 
-cd
+  # TODO add docky to autostart?
+
+  # Install chrome
+  install_google_chrome
+
+}

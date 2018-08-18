@@ -12,7 +12,7 @@ setup_core()
   #### Install packages
   ######################
 
-  # Install git, vim, tmux, suckless-tools (includes dmenu), openssh-server,
+  # Install git, tmux, openssh-server,
   # cmake, c
   sudo apt install \
   git \
