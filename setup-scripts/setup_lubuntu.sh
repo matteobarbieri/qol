@@ -21,7 +21,7 @@ print_help()
 recap_choices()
 {
   COMPONENTS=$@
-  echo "The following components will be instaled:"
+  echo "The following components will be installed:"
   echo $COMPONENTS
 
   echo -n "Proceed with the installation? [y/N] "
@@ -78,6 +78,11 @@ main()
 
   # Remove airquotes
   COMPONENTS=$(sed -e 's/"//g' <<< "$COMPONENTS")
+
+   if [ -z "$COMPONENTS" ]; then
+     echo "No components selected, leaving installation."
+     exit 0
+   fi
 
   # Recap the components that are about to be installed
   recap_choices $COMPONENTS
