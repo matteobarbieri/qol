@@ -32,7 +32,9 @@ Now the real stuff begins.
 
 ## System setup script
 
-Inside folder `setup-scripts` you will find a script which will launch the installation of all components.
+Inside folder `setup-scripts` you will find the script `setup_lubuntu.sh` which will begin the installation process for all components.
+
+Just execute it with `./setup_lubuntu.sh` and a menu will allow you to select which components you want to install.
 
 ### Core
 
