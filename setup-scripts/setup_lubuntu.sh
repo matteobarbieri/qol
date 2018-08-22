@@ -3,27 +3,51 @@
 ALIASES_FILE=~/.aliases
 
 # Update just in case
-sudo apt update
+# sudo apt update
 
 # Location of the script. NOTE: does not have trailing '/'
 # It should probably look something like /home/user/repo/qol/setup_scripts
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 
-# Core stuff (tmux, htop et similia)
-source "${SCRIPTPATH}/setup_core.sh"
-setup_core $ALIASES_FILE
+# Print a recap of all components that are about to be installed/configured
+recap_choices()
+{
+  COMPONENTS=$@
+  echo "The following components will be instaled:"
+  echo $COMPONENTS
 
-# zsh, antigen and the related theme
-# TODO
+  echo -n "Proceed with the installation? [y/N] "
+  read CHOICE
 
-# vim and plugins
-# TODO
+  if [ "$CHOICE" == 'y' ] || [ "$CHOICE" == 'Y' ]; then
+    return 1
+  else
+    echo "Installation cancelled"
+    exit 1
+  fi
+}
 
-# Install anaconda python and create standard virtual environments py2 and py3
-# TODO
+# Show menu
+COMPONENTS=$(whiptail --checklist "Choose which component to install" 16 82 6 \
+"core" "Core programs (htop, tmux et similia)" on \
+"zsh" "Zsh shell and antigen (plus a fancy theme for oh-my-zsh)" on \
+"vim" "Vim (plus ultimate vim configuration)" on \
+"anaconda" "Anaconda (Python framework plus default virtual envs)" on \
+"desktop" "Desktop programs (Docky, Google Chrome and more)" on \
+"xfce4-terminal" "The xfce4-terminal (and cool color schemes)" on \
+3>&1 1>&2 2>&3) # needed to redirect output to variable
 
-# Desktop stuff (docky, dmenu, Google Chrome...)
-# TODO
+# Remove airquotes
+COMPONENTS=$(sed -e 's/"//g' <<< "$COMPONENTS")
 
-# Xfce terminal and color schemes
-# TODO
+# Recap the components that are about to be installed
+recap_choices $COMPONENTS
+
+COMPONENTS_PATH="${SCRIPTPATH}/components"
+
+for C in $COMPONENTS; do
+  # For each component, source the corresponding file and
+  # launch the installation command
+  source "${COMPONENTS_PATH}/setup_${C}.sh"
+  setup_$C $ALIASES_FILE
+done

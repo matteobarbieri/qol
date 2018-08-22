@@ -1,10 +1,5 @@
 #!/bin/bash
 
-
-# Location of the script. NOTE: does not have trailing '/'
-# It should probably look something like /home/user/repo/qol/setup_scripts
-SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
-
 # Just install one of the available nerd fonts, patched
 install_colorschemes()
 {
