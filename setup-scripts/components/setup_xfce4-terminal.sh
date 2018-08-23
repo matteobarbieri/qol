@@ -6,15 +6,18 @@ install_colorschemes()
 
   echo -e "\e[92mInstalling custom color schemes for xfce4-terminal\e[0m"
 
+  ### Copy the color schemes to the local config folder for xfce4-terminal
+
   # Create the folder if it does not already exists
   mkdir -p ~/.local/share/xfce4/terminal/colorschemes 2> /dev/null || echo -e "\e[93mLocal folder for xfce4-terminal color schemes already exists\e[0m"
-
-  # Copy the color schemes to the local config folder for xfce4-terminal
+  # Copy color scheme files
   cp $SCRIPTPATH/../colorschemes/xfce4-terminal/* \
   ~/.local/share/xfce4/terminal/colorschemes/
 
-  # Also copy the default config file in order to activate the correct
-  # font and color scheme
+  ### Also copy the default config file in order to activate the correct
+  # Create the folder if it does not already exists
+  mkdir -p ~/.config/xfce4/terminal 2> /dev/null || echo -e "\e[93mLocal folder for xfce4-terminal configuration file already exists\e[0m"
+  # Copy configuration file
   cp $SCRIPTPATH/../dotfiles/xfce4-terminal/terminalrc \
   ~/.config/xfce4/terminal/terminalrc
 
