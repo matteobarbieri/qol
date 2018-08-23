@@ -9,7 +9,7 @@ install_colorschemes()
   # Create the folder if it does not already exists
   mkdir -p ~/.local/share/xfce4/terminal/colorschemes 2> /dev/null || echo -e "\e[93mLocal folder for xfce4-terminal color schemes already exists\e[0m"
 
-  cp "${SCRIPTPATH}/../colorschemes/xfce4-terminal/*" \
+  cp $SCRIPTPATH/../colorschemes/xfce4-terminal/* \
   ~/.local/share/xfce4/terminal/colorschemes/
 
   echo -e "\e[92mColor schemes installed, manually set it in terminal preferences to use them\e[0m"
