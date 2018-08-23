@@ -29,7 +29,8 @@ install_nerdfonts()
   # Refresh font cache
   fc-cache -fv
 
-  echo -e "\e[92mFonts installed, manually change it in the terminal in order to properly display non standard glyphs\e[0m"
+  # echo -e "\e[92mFonts installed, manually change it in the terminal in order to properly display non standard glyphs\e[0m"
+  echo -e "\e[92mNerdfonts ${FONT_NAME} installed\e[0m"
 
 }
 
@@ -80,5 +81,7 @@ setup_zsh()
 
   # Install antigen and copy configuration files for zsh/powerlevel9k
   install_antigen
+
+  echo -e "\e[93mZsh installation and configuration complete. Logout and log back in to see the changes.\e[0m"
 
 }
