@@ -26,11 +26,16 @@ setup_anaconda()
 {
   # Download and install (press yes a couple of times)
 
+  echo $SHELL
   # Save the name of the file in a variable for further use
   ANACONDA_INSTALL_SCRIPT=Miniconda3-latest-Linux-x86_64.sh
 
+  # Create the folder if it does not already exists
+  mkdir -p ${HOME}/Downloads 2> /dev/null || echo -e "\e[93mDownloads folder already exists\e[0m"
+
   wget "https://repo.continuum.io/miniconda/${ANACONDA_INSTALL_SCRIPT}" \
   -O "${HOME}/Downloads/${ANACONDA_INSTALL_SCRIPT}"
+
 
   $SHELL "${HOME}/Downloads/${ANACONDA_INSTALL_SCRIPT}"
 
