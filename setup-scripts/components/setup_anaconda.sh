@@ -39,6 +39,18 @@ setup_anaconda()
 
   $SHELL "${HOME}/Downloads/${ANACONDA_INSTALL_SCRIPT}"
 
+  # In case shell is zsh, add conda path to .zshrc
+  if [[ "$SHELL" =~ "zsh" ]]; then
+    echo "# Added by miniconda installer" >> ~/.zshrc
+    # TODO fix for mac systems
+    # TODO fix also for different miniconda
+    TMPLINE="export PATH=/home/$USER/miniconda3/bin:\$PATH"
+    echo $TMPLINE >> ~/.zshrc
+    source ~/.zshrc
+  else
+    source ~/.bashrc
+  fi
+
   # Update, just in case
   conda update -n base conda
 
