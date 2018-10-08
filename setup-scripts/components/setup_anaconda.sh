@@ -16,7 +16,7 @@ create_standard_condaenv()
 
   ENV_NAME="py${PYTHON_VERSION}"
 
-  conda create --name $ENV_NAME python=PYTHON_VERSION
+  conda create --name $ENV_NAME python=$PYTHON_VERSION
   . activate $ENV_NAME
   conda install jupyter numpy scikit-learn seaborn
   . deactivate
