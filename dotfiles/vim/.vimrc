@@ -56,6 +56,9 @@ Plugin 'crusoexia/vim-monokai'
 " Search any file
 Plugin 'kien/ctrlp.vim'
 
+" Show buffers at the bottom of the screen
+Plugin 'bling/vim-bufferline'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
