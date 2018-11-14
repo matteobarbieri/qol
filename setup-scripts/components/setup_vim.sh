@@ -31,6 +31,9 @@ install_vundle()
 
   # Toggle vim installation for all specified plugins
   vim +PluginInstall +qall
+
+  # Perform additional setup for youcompleteme plugin
+  python  ~/.vim/bundle/youcompleteme/install.py
 }
 
 setup_vim()
@@ -40,9 +43,10 @@ setup_vim()
   ######################
 
   # Install vim
-  
+
   sudo apt install vim
 
-  install_awesome_vimrc
+  # install_awesome_vimrc
+  install_vundle
 
 }

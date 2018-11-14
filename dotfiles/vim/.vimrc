@@ -49,6 +49,10 @@ Plugin 'vim-airline/vim-airline-themes'
 " Another color theme
 Plugin 'nanotech/jellybeans.vim'
 
+"Plugin 'sickill/vim-monokai'
+
+Plugin 'crusoexia/vim-monokai'
+
 " Search any file
 Plugin 'kien/ctrlp.vim'
 
@@ -69,7 +73,8 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 
 " Use molokai color scheme for the editor
-colorscheme molokai
+"colorscheme molokai
+colorscheme monokai
 
 " Use molokai theme for the airline
 let g:airline_theme='powerlineish'
@@ -77,4 +82,9 @@ let g:airline_theme='powerlineish'
 let g:airline_powerline_fonts = 1
 
 " Open NERDTree when vim starts
-autocmd vimenter * NERDTree
+"autocmd vimenter * NERDTree
+
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+
