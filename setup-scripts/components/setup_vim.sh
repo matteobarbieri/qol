@@ -20,6 +20,19 @@ install_awesome_vimrc()
   echo "colorscheme monokai" >> ~/.vim_runtime/my_configs.vim
 }
 
+install_vundle()
+{
+
+  # Install Vundle
+  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+  # Copy the provided .vimrc file
+  cp $SCRIPTPATH/../dotfiles/vim/.vimrc ~/.vimrc
+
+  # Toggle vim installation for all specified plugins
+  vim +PluginInstall +qall
+}
+
 setup_vim()
 {
   ######################
