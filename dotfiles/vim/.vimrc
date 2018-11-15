@@ -59,6 +59,14 @@ Plugin 'kien/ctrlp.vim'
 " Show buffers at the bottom of the screen
 Plugin 'bling/vim-bufferline'
 
+" Use multiple cursors
+Plugin 'terryma/vim-multiple-cursors'
+
+" Bookmarks
+Plugin 'MattesGroeger/vim-bookmarks'
+
+" Smart code folding for python
+Plugin 'tmhedberg/SimpylFold'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -83,6 +91,13 @@ colorscheme monokai
 let g:airline_theme='powerlineish'
 " Also uses powerline fonts
 let g:airline_powerline_fonts = 1
+
+" YCM: autoclose docs window after insertion/completion
+" let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+
+"let g:bufferline_active_buffer_left = '['
+"let g:bufferline_active_buffer_right = ']'
 
 " Open NERDTree when vim starts
 "autocmd vimenter * NERDTree
