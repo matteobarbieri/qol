@@ -12,3 +12,7 @@ alias abb='atom ~/projects/ABB/ABB-repo-remote'
 
 # Purge dangling docker images
 alias docker_purge_dangling='docker rmi --force $(docker images -f "dangling=true" -q)'
+
+# Add quick commands to turn powerlevel9k theme on/off
+alias 9kon='prompt_powerlevel9k_setup'
+alias 9koff='prompt_powerlevel9k_teardown'
