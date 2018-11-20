@@ -7,9 +7,6 @@ alias jup='jupyter notebook --no-browser --ip="*"'
 # Shortcut for ls -lah
 alias lah='ls -lah'
 
-# Open atom on project folder
-alias abb='atom ~/projects/ABB/ABB-repo-remote'
-
 # Purge dangling docker images
 alias docker_purge_dangling='docker rmi --force $(docker images -f "dangling=true" -q)'
 
