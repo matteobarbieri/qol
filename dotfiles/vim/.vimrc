@@ -111,4 +111,4 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 autocmd VimEnter * let g:bufferline_active_buffer_left = '['
 autocmd VimEnter * let g:bufferline_active_buffer_right = ']'
 
-
+set nofoldenable
