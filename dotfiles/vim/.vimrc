@@ -112,3 +112,10 @@ autocmd VimEnter * let g:bufferline_active_buffer_left = '['
 autocmd VimEnter * let g:bufferline_active_buffer_right = ']'
 
 set nofoldenable
+
+" Two mappings for easy tab navigation
+nnoremap tt  :tabedit<Space>
+nnoremap td  :tabclose<CR>
+
+
+
