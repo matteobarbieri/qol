@@ -14,6 +14,10 @@ call vundle#begin()
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
+
+" Vim guttere: A Vim plugin which shows a git diff in the 'gutter' (sign column).
+Plugin 'airblade/vim-gitgutter'
+
 " plugin from http://vim-scripts.org/vim/scripts.html
 Plugin 'L9'
 " Git plugin not hosted on GitHub
@@ -117,5 +121,5 @@ set nofoldenable
 nnoremap tt  :tabedit<Space>
 nnoremap td  :tabclose<CR>
 
-
+set updatetime=1000
 
