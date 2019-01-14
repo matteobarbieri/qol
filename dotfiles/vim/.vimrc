@@ -72,6 +72,10 @@ Plugin 'MattesGroeger/vim-bookmarks'
 " Smart code folding for python
 Plugin 'tmhedberg/SimpylFold'
 
+" Tagbar
+Plugin 'majutsushi/tagbar'
+
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -122,4 +126,7 @@ nnoremap tt  :tabedit<Space>
 nnoremap td  :tabclose<CR>
 
 set updatetime=1000
+
+" Toggle Tagbar
+nmap <F8> :TagbarToggle<CR>
 
