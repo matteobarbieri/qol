@@ -121,6 +121,9 @@ autocmd VimEnter * let g:bufferline_active_buffer_right = ']'
 
 set nofoldenable
 
+" Forces text wrapping at 80 characters
+set textwidth=80
+
 " Two mappings for easy tab navigation
 nnoremap tt  :tabedit<Space>
 nnoremap td  :tabclose<CR>
