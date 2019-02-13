@@ -18,7 +18,8 @@ take care of different parts: installing base packages, setting up a powerful
 yet readable shell prompt, installing anaconda and creating standard
 environments and so on.
 
-But hey! How do I clone a repository if the
+"But hey! How do I clone a repository if the system is brand new and I don't even 
+have `git` installed?" - _Everyone, panicking_.
 
 Don't panic, I got you covered: use the following code snippet to just install
 git and clone this repo. Come on, it's just **one** line, I'm pretty sure you
@@ -35,7 +36,7 @@ Then, just make it executable, run it (you will be asked your password for
 Here is the code if you're _that_ lazy:
 
 ```
-    chmod +x kickstart-qol.sh ./kickstart-qol.sh 
+    chmod +x kickstart-qol.sh && ./kickstart-qol.sh 
 ```
 
 You now have a new folder `repo` in your home containing just this repo.
