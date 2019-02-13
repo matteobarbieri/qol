@@ -4,6 +4,20 @@ POWERLEVEL9K_MODE='nerdfont-complete'
 
 POWERLEVEL9K_INSTALLATION_PATH=$ANTIGEN_BUNDLES/bhilburn/powerlevel9k
 
+# Custom segment to show new mail
+zsh_new_mail(){
+	N_EMAILS=`cat /var/mail/matteo | grep "Received: by $(hostname)" | wc -l`
+	if [ $N_EMAILS -ge 1 ]; then
+		#echo "\ufbcd"
+		echo "\uf6ed ${N_EMAILS}"
+	fi
+}
+
+POWERLEVEL9K_CUSTOM_NEW_MAIL="zsh_new_mail"
+
+POWERLEVEL9K_CUSTOM_NEW_MAIL_BACKGROUND="magenta"
+POWERLEVEL9K_CUSTOM_NEW_MAIL_FOREGROUND="black"
+
 # Prompts
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
   POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(battery ssh context dir anaconda vcs)
@@ -11,7 +25,7 @@ else
   POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(battery user dir anaconda vcs)
 fi
 #POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator battery custom_now_playing time)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs disk_usage ram time)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator custom_new_mail background_jobs disk_usage ram time)
 
 # Prompt customization
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
