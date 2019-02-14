@@ -14,9 +14,10 @@ install_nerdfonts()
   echo -e "\e[92mInstalling nerdfonts (selected font: ${FONT_NAME})\e[0m"
 
   # Download the font
+  ZIP_DST=/tmp/${FONT_NAME}.zip
   wget \
   "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/${FONT_NAME}.zip" \
-  -O "${HOME}/Downloads/${FONT_NAME}.zip"
+  -O "$ZIP_DST"
 
   # Install the font in the local fonts folder
 
@@ -24,7 +25,7 @@ install_nerdfonts()
   mkdir -p ~/.local/share/fonts 2> /dev/null || echo -e "\e[93mLocal fonts folder already exists\e[0m"
 
   # Unzip the ttf files directly in that folder
-  unzip "${HOME}/Downloads/${FONT_NAME}.zip" -d ~/.local/share/fonts
+  unzip "$ZIP_DST" -d ~/.local/share/fonts
 
   # Refresh font cache
   fc-cache -fv
