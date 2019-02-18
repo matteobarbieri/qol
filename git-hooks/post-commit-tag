@@ -1,0 +1,23 @@
+#!/bin/sh
+#
+# A hook script that automatically tags the branch in case the 
+# VERSION file has been changed.
+
+# Only tag if on a specific branch (probably master)
+CURRENT_BRANCH=`git rev-parse --abbrev-ref HEAD`
+TARGET_BRANCH="master"
+
+# Use a prefix for the tag
+TAG_PREFIX="v"
+
+# Check if the VERSION file has been changed in the last commit
+# Also retrieve the path
+VERSION_FILE=`git show HEAD --name-only --pretty="" | grep "VERSION$"`
+
+if [ $CURRENT_BRANCH = "$TARGET_BRANCH" -a ! $VERSION_FILE = "" ]; then
+
+	NEW_VERSION=`cat $VERSION_FILE`
+
+	git tag "${TAG_PREFIX}${NEW_VERSION}"
+fi
+
