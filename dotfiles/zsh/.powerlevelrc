@@ -6,7 +6,7 @@ POWERLEVEL9K_INSTALLATION_PATH=$ANTIGEN_BUNDLES/bhilburn/powerlevel9k
 
 # Custom segment to show new mail
 zsh_new_mail(){
-	N_EMAILS=`cat /var/mail/matteo | grep "Received: by $(hostname)" | wc -l`
+	N_EMAILS=`(cat /var/mail/matteo 2> /dev/null || echo "") | grep "Received: by $(hostname)" | wc -l`
 	if [ $N_EMAILS -ge 1 ]; then
 		#echo "\ufbcd"
 		echo "\uf6ed ${N_EMAILS}"
