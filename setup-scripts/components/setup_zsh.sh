@@ -62,7 +62,8 @@ install_antigen()
 
   # Copy the configuration file for the powerlevel9k theme
   # (adds a very fancy prompt)
-  cp "${SCRIPTPATH}/../dotfiles/zsh/.powerlevelrc" ~/.powerlevelrc
+  #cp "${SCRIPTPATH}/../dotfiles/zsh/.powerlevelrc" ~/.powerlevelrc
+  ln -s `realpath "${SCRIPTPATH}/../dotfiles/zsh/.powerlevelrc"` ~/.powerlevelrc
 
 }
 
