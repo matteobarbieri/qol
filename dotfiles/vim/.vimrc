@@ -75,6 +75,8 @@ Plugin 'tmhedberg/SimpylFold'
 " Tagbar
 Plugin 'majutsushi/tagbar'
 
+" PEP8 checker
+Plugin 'nvie/vim-flake8'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
