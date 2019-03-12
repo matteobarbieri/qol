@@ -11,8 +11,8 @@ alias lah='ls -lah'
 alias docker_purge_dangling='docker rmi --force $(docker images -f "dangling=true" -q)'
 
 # Add quick commands to turn powerlevel9k theme on/off
+alias 9koff='prompt_powerlevel9k_teardown && antigen theme bureau'
 alias 9kon='prompt_powerlevel9k_setup'
-alias 9koff='prompt_powerlevel9k_teardown'
 
 # Add aliases for quick activating/deactivating conda environments
 alias .d='. deactivate'
