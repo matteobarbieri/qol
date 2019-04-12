@@ -17,3 +17,6 @@ alias 9kon='prompt_powerlevel9k_setup'
 # Add aliases for quick activating/deactivating conda environments
 alias .d='. deactivate'
 alias .a='. activate'
+
+# Add alias for vim
+alias v='vim'
