@@ -54,7 +54,6 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'nanotech/jellybeans.vim'
 
 "Plugin 'sickill/vim-monokai'
-
 Plugin 'crusoexia/vim-monokai'
 
 " Search any file
@@ -77,6 +76,20 @@ Plugin 'majutsushi/tagbar'
 
 " PEP8 checker
 Plugin 'nvie/vim-flake8'
+
+" Track the engine.
+Plugin 'SirVer/ultisnips'
+
+" Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<c-space>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -105,6 +118,9 @@ let g:airline_powerline_fonts = 1
 " YCM: autoclose docs window after insertion/completion
 " let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
+
+" Use current virtualenv python for autocompletion
+let g:ycm_python_binary_path = 'python'
 
 "let g:bufferline_active_buffer_left = '['
 "let g:bufferline_active_buffer_right = ']'
@@ -135,3 +151,5 @@ set updatetime=1000
 " Toggle Tagbar
 nmap <F8> :TagbarToggle<CR>
 
+" Map CTRL+/ to toggle comment (for some reason vim requires _ instead of /)
+nmap <C-_> <plug>NERDCommenterToggle
