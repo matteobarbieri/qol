@@ -153,3 +153,4 @@ nmap <F8> :TagbarToggle<CR>
 
 " Map CTRL+/ to toggle comment (for some reason vim requires _ instead of /)
 nmap <C-_> <plug>NERDCommenterToggle
+vmap <C-_> <plug>NERDCommenterToggle<CR>gv
