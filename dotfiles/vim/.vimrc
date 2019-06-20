@@ -85,6 +85,11 @@ Plugin 'honza/vim-snippets'
 
 " Alternative cpp highlighting
 Plugin 'octol/vim-cpp-enhanced-highlight'
+" Python mode
+Plugin 'python-mode/python-mode'
+
+Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plugin 'junegunn/fzf.vim'
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<c-space>"
@@ -157,3 +162,6 @@ nmap <F8> :TagbarToggle<CR>
 " Map CTRL+/ to toggle comment (for some reason vim requires _ instead of /)
 nmap <C-_> <plug>NERDCommenterToggle
 vmap <C-_> <plug>NERDCommenterToggle<CR>gv
+
+" Set tabs to be 4 spaces
+set ts=4 sw=4 sts=4 et
