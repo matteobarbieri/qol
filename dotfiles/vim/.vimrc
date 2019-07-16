@@ -165,3 +165,9 @@ vmap <C-_> <plug>NERDCommenterToggle<CR>gv
 
 " Set tabs to be 4 spaces
 set ts=4 sw=4 sts=4 et
+
+" Quick save with <Leader>s
+noremap <Leader>s :update<CR>
+
+" Set syntax check mode for python to python3 (python-mode)
+let g:pymode_python = 'python3'
