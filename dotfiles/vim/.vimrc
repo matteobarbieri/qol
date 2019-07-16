@@ -85,6 +85,7 @@ Plugin 'honza/vim-snippets'
 
 " Alternative cpp highlighting
 Plugin 'octol/vim-cpp-enhanced-highlight'
+
 " Python mode
 Plugin 'python-mode/python-mode'
 
