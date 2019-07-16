@@ -172,3 +172,7 @@ noremap <Leader>s :update<CR>
 
 " Set syntax check mode for python to python3 (python-mode)
 let g:pymode_python = 'python3'
+
+" Ignore certain types of files
+set wildignore+=*.o,*.so,*.swp,*.zip     " MacOSX/Linux
+
