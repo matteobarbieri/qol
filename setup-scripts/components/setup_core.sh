@@ -25,5 +25,8 @@ setup_core()
 
   # Create alias for tmux
   echo "alias tmux='tmux -2'" >> $ALIASES_FILE
+  
+  # Add custom git aliases to .gitconfig
+  cat `realpath "${SCRIPTPATH}/../dotfiles/.gitconfig"` >> ~/.gitconfig
 
 }
