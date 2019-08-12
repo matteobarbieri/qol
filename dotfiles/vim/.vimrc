@@ -176,3 +176,5 @@ let g:pymode_python = 'python3'
 " Ignore certain types of files
 set wildignore+=*.o,*.so,*.swp,*.zip     " MacOSX/Linux
 
+" Enable FixIt for Youcompleteme
+map <F9> :YcmCompleter FixIt<CR>
