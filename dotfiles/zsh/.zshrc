@@ -110,5 +110,8 @@ plugins=(
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 
+# Disable autcompletion for vim for certain file types
+zstyle ':completion:*:*:vim:*' file-patterns '^*.(o|pdf):source-files' '*:all-files'
+
 # Custom aliases
 source ~/.aliases
