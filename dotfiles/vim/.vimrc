@@ -178,3 +178,7 @@ set wildignore+=*.o,*.so,*.swp,*.zip     " MacOSX/Linux
 
 " Enable FixIt for Youcompleteme
 map <F9> :YcmCompleter FixIt<CR>
+
+" Mappings for fuzzy finder
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
