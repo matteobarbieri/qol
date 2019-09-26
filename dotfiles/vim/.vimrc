@@ -173,6 +173,14 @@ noremap <Leader>s :update<CR>
 " Set syntax check mode for python to python3 (python-mode)
 let g:pymode_python = 'python3'
 
+" Ignore certain errors/warnings:
+" E116 - inconsistent indentation on commented line
+" E402 - import not at top of file
+let g:pymode_lint_ignore = ["E116", "E402"]
+
+" Check while editing
+let g:pymode_lint_on_fly = 1
+
 " Ignore certain types of files
 set wildignore+=*.o,*.so,*.swp,*.zip     " MacOSX/Linux
 
