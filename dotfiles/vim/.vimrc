@@ -176,7 +176,8 @@ let g:pymode_python = 'python3'
 " Ignore certain errors/warnings:
 " E116 - inconsistent indentation on commented line
 " E402 - import not at top of file
-let g:pymode_lint_ignore = ["E116", "E402"]
+" E722 - bare except
+let g:pymode_lint_ignore = ["E116", "E402", "E722"]
 
 " Check while editing
 let g:pymode_lint_on_fly = 1
