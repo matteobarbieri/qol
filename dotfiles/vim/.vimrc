@@ -179,8 +179,12 @@ let g:pymode_python = 'python3'
 " E722 - bare except
 let g:pymode_lint_ignore = ["E116", "E402", "E722"]
 
+" Had to disable this due to bad interaction with multi cursors
 " Check while editing
-let g:pymode_lint_on_fly = 1
+"let g:pymode_lint_on_fly = 1
+
+" Also check if save but not modified
+let g:pymode_lint_unmodified = 1
 
 " Ignore certain types of files
 set wildignore+=*.o,*.so,*.swp,*.zip     " MacOSX/Linux
