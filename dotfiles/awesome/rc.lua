@@ -723,7 +723,9 @@ awful.rules.rules = {
     },
 
     -- Titlebars
+    -- Exception: terminal
     { rule_any = { type = { "dialog", "normal" } },
+      except_any = { instance = { "xfce4-terminal" } },
       properties = { titlebars_enabled = true } },
 
     -- Set Firefox to always map on the first tag on screen 1.
