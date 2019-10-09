@@ -21,10 +21,7 @@ setup_desktop()
   # Install suckless-tools (includes dmenu), xcompmgr and docky
   sudo apt install \
   xcompmgr \
-  suckless-tools \
-  docky
-
-  # TODO add docky to autostart?
+  suckless-tools
 
   # Install chrome
   install_google_chrome
