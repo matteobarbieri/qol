@@ -24,7 +24,8 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 source ~/.powerlevelrc
 
 # Use the powerlevel9k theme for a fancy prompt
-antigen theme bhilburn/powerlevel9k powerlevel9k
+#antigen theme bhilburn/powerlevel9k powerlevel9k
+antigen theme romkatv/powerlevel10k 
 
 # Apply antigen
 antigen apply
