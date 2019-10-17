@@ -131,8 +131,8 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 " Use current virtualenv python for autocompletion
 let g:ycm_python_binary_path = 'python'
 
-"let g:bufferline_active_buffer_left = '['
-"let g:bufferline_active_buffer_right = ']'
+" Enable powerline for tabs as well!
+let g:airline#extensions#tabline#enabled = 1
 
 " Open NERDTree when vim starts
 "autocmd vimenter * NERDTree
