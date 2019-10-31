@@ -20,3 +20,4 @@ alias .a='. activate'
 
 # Add alias for vim
 alias v='vim'
+alias vv='view'
