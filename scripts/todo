@@ -1,0 +1,6 @@
+#!/bin/sh
+
+grep -rn . \
+    --color=auto \
+    --include \*.py \
+    -e "TODO"
