@@ -2,11 +2,6 @@ alias tmux='tmux -2'
 
 alias jup='jupyter notebook --no-browser --ip="*"'
 
-# alias wk22='ssh matteo@addfor-wk22'
-
-# Shortcut for ls -lah
-alias lah='ls -lah'
-
 # Purge dangling docker images
 alias docker_purge_dangling='docker rmi --force $(docker images -f "dangling=true" -q)'
 
@@ -21,3 +16,7 @@ alias .a='. activate'
 # Add alias for vim
 alias v='vim'
 alias vv='view'
+
+# Snippet for smart choosing conda environment to activate
+# .a $(conda env list | cut -f 1 -d ' ' | fzf)
+[ -f ~/.aliases.local ] && source ~/.aliases.local
