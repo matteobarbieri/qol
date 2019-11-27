@@ -40,6 +40,9 @@ if awesome.startup_errors then
                      text = awesome.startup_errors })
 end
 
+-- Limit icon size
+naughty.config.defaults['icon_size'] = 100
+
 -- Handle runtime errors after startup
 do
     local in_error = false
