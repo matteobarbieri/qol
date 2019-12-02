@@ -29,7 +29,10 @@ setup_core()
   # Add custom git aliases to .gitconfig
   cat `realpath "${SCRIPTPATH}/../dotfiles/.gitconfig"` >> ~/.gitconfig
 
-  # Also copy custom configuration for tmux
+  # Install tmux plugin manager
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+  # Create symlink to .tmux.conf
   ln -s `realpath "${SCRIPTPATH}/../dotfiles/.tmux.conf"` ~/.tmux.conf
 
 }
