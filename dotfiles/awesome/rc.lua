@@ -25,6 +25,11 @@ local my_table      = awful.util.table or gears.table -- 4.{0,1} compatibility
 -- cycle focus, to use alt tab
 local cyclefocus = require('cyclefocus')
 
+-- load the widget code for Volume control
+local volume_control = require("volume-control")
+
+-- define your volume control, using default settings:
+volumecfg = volume_control({device="pulse"})
 
 -- }}}
 
@@ -485,36 +490,41 @@ globalkeys = my_table.join(
               {description = "-10%", group = "hotkeys"}),
 
     -- ALSA volume control
-    awful.key({ altkey }, "Up",
-        function ()
-            os.execute(string.format("amixer -q set %s 1%%+", beautiful.volume.channel))
-            beautiful.volume.update()
-        end,
-        {description = "volume up", group = "hotkeys"}),
-    awful.key({ altkey }, "Down",
-        function ()
-            os.execute(string.format("amixer -q set %s 1%%-", beautiful.volume.channel))
-            beautiful.volume.update()
-        end,
-        {description = "volume down", group = "hotkeys"}),
-    awful.key({ altkey }, "m",
-        function ()
-            os.execute(string.format("amixer -q set %s toggle", beautiful.volume.togglechannel or beautiful.volume.channel))
-            beautiful.volume.update()
-        end,
-        {description = "toggle mute", group = "hotkeys"}),
-    awful.key({ altkey, "Control" }, "m",
-        function ()
-            os.execute(string.format("amixer -q set %s 100%%", beautiful.volume.channel))
-            beautiful.volume.update()
-        end,
-        {description = "volume 100%", group = "hotkeys"}),
-    awful.key({ altkey, "Control" }, "0",
-        function ()
-            os.execute(string.format("amixer -q set %s 0%%", beautiful.volume.channel))
-            beautiful.volume.update()
-        end,
-        {description = "volume 0%", group = "hotkeys"}),
+    --awful.key({ altkey }, "Up",
+        --function ()
+            --os.execute(string.format("amixer -q set %s 1%%+", beautiful.volume.channel))
+            --beautiful.volume.update()
+        --end,
+        --{description = "volume up", group = "hotkeys"}),
+    --awful.key({ altkey }, "Down",
+        --function ()
+            --os.execute(string.format("amixer -q set %s 1%%-", beautiful.volume.channel))
+            --beautiful.volume.update()
+        --end,
+        --{description = "volume down", group = "hotkeys"}),
+    --awful.key({ altkey }, "m",
+        --function ()
+            --os.execute(string.format("amixer -q set %s toggle", beautiful.volume.togglechannel or beautiful.volume.channel))
+            --beautiful.volume.update()
+        --end,
+        --{description = "toggle mute", group = "hotkeys"}),
+    --awful.key({ altkey, "Control" }, "m",
+        --function ()
+            --os.execute(string.format("amixer -q set %s 100%%", beautiful.volume.channel))
+            --beautiful.volume.update()
+        --end,
+        --{description = "volume 100%", group = "hotkeys"}),
+    --awful.key({ altkey, "Control" }, "0",
+        --function ()
+            --os.execute(string.format("amixer -q set %s 0%%", beautiful.volume.channel))
+            --beautiful.volume.update()
+        --end,
+        --{description = "volume 0%", group = "hotkeys"}),
+
+    -- Multimedia keys for audio control
+    awful.key({}, "XF86AudioRaiseVolume", function() volumecfg:up() end),
+    awful.key({}, "XF86AudioLowerVolume", function() volumecfg:down() end),
+    awful.key({}, "XF86AudioMute",        function() volumecfg:toggle() end),
 
     -- MPD control
     awful.key({ altkey, "Control" }, "Up",
