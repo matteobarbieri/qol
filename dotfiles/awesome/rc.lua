@@ -205,6 +205,27 @@ lain.layout.cascade.tile.extra_padding = 5
 lain.layout.cascade.tile.nmaster       = 5
 lain.layout.cascade.tile.ncol          = 2
 
+-- Keyboard map indicator and changer
+kbdcfg = {}
+kbdcfg.cmd = "setxkbmap"
+kbdcfg.layout = { { "us", "", "US" }, { "it", "", "IT" }, { "se", "", "SE" } }
+kbdcfg.current = 2  -- de is our default layout
+kbdcfg.widget = wibox.widget.textbox()
+kbdcfg.widget:set_text(" " .. kbdcfg.layout[kbdcfg.current][1] .. " ")
+
+kbdcfg.switch = function ()
+  kbdcfg.current = kbdcfg.current % #(kbdcfg.layout) + 1
+  local t = kbdcfg.layout[kbdcfg.current]
+  kbdcfg.widget:set_text(" " .. t[1] .. " ")
+  os.execute( kbdcfg.cmd .. " " .. t[1] .. " " .. t[2] )
+end
+
+-- Mouse bindings
+kbdcfg.widget:buttons(
+ awful.util.table.join(awful.button({ }, 1, function () kbdcfg.switch() end))
+)
+
+
 beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme))
 -- }}}
 
@@ -257,26 +278,6 @@ root.buttons(my_table.join(
     awful.button({ }, 5, awful.tag.viewprev)
 ))
 -- }}}
-
--- Keyboard map indicator and changer
-kbdcfg = {}
-kbdcfg.cmd = "setxkbmap"
-kbdcfg.layout = { { "us", "" }, { "it", "" } }
-kbdcfg.current = 2  -- de is our default layout
-kbdcfg.widget = wibox.widget.textbox()
-kbdcfg.widget:set_text(" " .. kbdcfg.layout[kbdcfg.current][1] .. " ")
-
-kbdcfg.switch = function ()
-  kbdcfg.current = kbdcfg.current % #(kbdcfg.layout) + 1
-  local t = kbdcfg.layout[kbdcfg.current]
-  kbdcfg.widget:set_text(" " .. t[1] .. " ")
-  os.execute( kbdcfg.cmd .. " " .. t[1] .. " " .. t[2] )
-end
-
--- Mouse bindings
-kbdcfg.widget:buttons(
- awful.util.table.join(awful.button({ }, 1, function () kbdcfg.switch() end))
-)
 
 -- {{{ Key bindings
 globalkeys = my_table.join(
@@ -832,3 +833,6 @@ client.connect_signal("property::maximized", border_adjust)
 client.connect_signal("focus", border_adjust)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+-- Taken from https://askubuntu.com/questions/421705/how-to-lock-session-from-awesome
+awful.util.spawn_with_shell("~/bin/xautolock-session")
