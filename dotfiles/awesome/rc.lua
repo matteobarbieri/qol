@@ -33,6 +33,8 @@ volumecfg = volume_control({device="pulse"})
 
 -- }}}
 
+local flag_icons_folder = string.format("%s/.config/awesome/country_flags/", os.getenv("HOME"))
+
 -- Expose like plugin
 local revelation=require("revelation")
 
@@ -209,14 +211,16 @@ lain.layout.cascade.tile.ncol          = 2
 kbdcfg = {}
 kbdcfg.cmd = "setxkbmap"
 kbdcfg.layout = { { "us", "", "US" }, { "it", "", "IT" }, { "se", "", "SE" } }
-kbdcfg.current = 2  -- de is our default layout
-kbdcfg.widget = wibox.widget.textbox()
-kbdcfg.widget:set_text(" " .. kbdcfg.layout[kbdcfg.current][1] .. " ")
+kbdcfg.current = 1  -- us is our default layout
+--kbdcfg.widget = wibox.widget.textbox()
+--kbdcfg.widget:set_text(" " .. kbdcfg.layout[kbdcfg.current][1] .. " ")
+kbdcfg.widget = wibox.widget.imagebox(flag_icons_folder .. kbdcfg.layout[kbdcfg.current][1] .. ".png")
 
 kbdcfg.switch = function ()
   kbdcfg.current = kbdcfg.current % #(kbdcfg.layout) + 1
   local t = kbdcfg.layout[kbdcfg.current]
-  kbdcfg.widget:set_text(" " .. t[1] .. " ")
+  --kbdcfg.widget:set_text(" " .. t[1] .. " ")
+  kbdcfg.widget:set_image(flag_icons_folder .. t[1] .. ".png")
   os.execute( kbdcfg.cmd .. " " .. t[1] .. " " .. t[2] )
 end
 

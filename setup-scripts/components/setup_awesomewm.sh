@@ -11,6 +11,9 @@ install_awesomewm_stuff()
 
     # Create a symlink to rc.lua file
     ln -s $SCRIPTPATH/../dotfiles/awesome/rc.lua ~/.config/awesome/rc.lua
+
+    # Create a symlink to the folder containing flag icons for keyboard layout
+    ln -s $SCRIPTPATH/../resources/awesome/country_flags ~/.config/awesome/
 }
 
 setup_awesomewm()
