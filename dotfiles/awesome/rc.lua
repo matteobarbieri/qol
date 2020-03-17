@@ -839,4 +839,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 -- Taken from https://askubuntu.com/questions/421705/how-to-lock-session-from-awesome
-awful.util.spawn_with_shell("~/bin/xautolock-session")
+awful.util.spawn_with_shell("~/.config/awesome/scripts/locker.sh &")
+
+-- Start dropbox
+awful.util.spawn_with_shell("dropbox start")
