@@ -1,6 +1,7 @@
 alias tmux='tmux -2'
 
 alias jup='jupyter notebook --no-browser --ip="*"'
+alias lab='jupyter lab'
 
 # Purge dangling docker images
 alias docker_purge_dangling='docker rmi --force $(docker images -f "dangling=true" -q)'
