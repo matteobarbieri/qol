@@ -29,7 +29,7 @@ local cyclefocus = require('cyclefocus')
 local volume_control = require("volume-control")
 
 -- define your volume control, using default settings:
-volumecfg = volume_control({device="pulse"})
+volumecfg = volume_control({device="pulse", font="Terminus 12"})
 
 -- }}}
 
@@ -118,7 +118,7 @@ local guieditor    = "atom"
 local scrlocker    = "slock"
 
 awful.util.terminal = terminal
-awful.util.tagnames = { "Main", "Work", "Side", "Management", "Readings", "More", "Social" }
+awful.util.tagnames = { "Main", "Work", "Side", "Upgrade", "Readings", "More", "Social" }
 awful.layout.layouts = {
     awful.layout.suit.floating,
     awful.layout.suit.tile,
@@ -214,13 +214,13 @@ kbdcfg.layout = { { "us", "", "US" }, { "it", "", "IT" }, { "se", "", "SE" } }
 kbdcfg.current = 1  -- us is our default layout
 --kbdcfg.widget = wibox.widget.textbox()
 --kbdcfg.widget:set_text(" " .. kbdcfg.layout[kbdcfg.current][1] .. " ")
-kbdcfg.widget = wibox.widget.imagebox(flag_icons_folder .. kbdcfg.layout[kbdcfg.current][1] .. ".png")
+kbdcfg.widget = wibox.widget.imagebox(flag_icons_folder .. kbdcfg.layout[kbdcfg.current][1] .. ".svg")
 
 kbdcfg.switch = function ()
   kbdcfg.current = kbdcfg.current % #(kbdcfg.layout) + 1
   local t = kbdcfg.layout[kbdcfg.current]
   --kbdcfg.widget:set_text(" " .. t[1] .. " ")
-  kbdcfg.widget:set_image(flag_icons_folder .. t[1] .. ".png")
+  kbdcfg.widget:set_image(flag_icons_folder .. t[1] .. ".svg")
   os.execute( kbdcfg.cmd .. " " .. t[1] .. " " .. t[2] )
 end
 
