@@ -44,7 +44,7 @@ setup_vim()
 
   # Install vim
 
-  sudo apt install vim
+  sudo apt install vim exuberant-ctags
 
   # install_awesome_vimrc
   install_vundle
