@@ -21,6 +21,7 @@ setup_core()
   wget \
   openssh-server \
   cmake-curses-gui \
+  suckless-tools \
   cmake pkg-config
 
   # Create alias for tmux
