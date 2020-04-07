@@ -19,6 +19,7 @@ setup_core()
   tmux \
   htop \
   wget \
+  unzip \
   openssh-server \
   cmake-curses-gui \
   suckless-tools \
