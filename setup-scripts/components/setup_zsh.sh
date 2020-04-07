@@ -72,11 +72,11 @@ setup_zsh()
   # Install zsh
   sudo apt -y install zsh
 
-  ZSH=`which zsh`
+  ZSH=$(which zsh)
 
   # change the default shell to zsh
   echo -e "\e[92mEnter user password to change the current shell to zsh\e[0m"
-  chsh -s $ZSH # (need to enter user password)
+  sudo chsh $USER -s $ZSH
 
   # change the SHELL environment variable
   export SHELL=$ZSH
