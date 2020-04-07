@@ -23,7 +23,7 @@ setup_awesomewm()
     ######################
 
     # Install packages for awesomewm
-    sudo apt install \
+    sudo apt install -y \
         awesome \
         awesome-extra
 

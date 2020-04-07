@@ -14,7 +14,7 @@ setup_core()
 
   # Install git, tmux, openssh-server,
   # cmake, c
-  sudo apt install \
+  sudo apt install -y \
   git \
   tmux \
   htop \

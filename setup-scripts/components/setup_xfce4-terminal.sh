@@ -35,7 +35,7 @@ setup_xfce4-terminal()
 
   # Install zsh
   echo "\e[92mInstalling xfce4-terminal\e[0m"
-  sudo apt install xfce4-terminal
+  sudo apt install -y xfce4-terminal
 
   # Set xfce4-terminal as default x terminal emulator
   echo "\e[92mSetting xfce4-terminal as default x terminal emulator\e[0m"

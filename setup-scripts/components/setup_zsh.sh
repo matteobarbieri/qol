@@ -70,7 +70,7 @@ install_antigen()
 setup_zsh()
 {
   # Install zsh
-  sudo apt install zsh
+  sudo apt -y install zsh
 
   ZSH=`which zsh`
 
