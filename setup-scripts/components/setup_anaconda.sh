@@ -18,7 +18,7 @@ create_standard_condaenv()
 
   conda create --name $ENV_NAME python=$PYTHON_VERSION
   . activate $ENV_NAME
-  conda install jupyter numpy scikit-learn seaborn
+  conda install -y jupyter numpy scikit-learn seaborn
   . deactivate
 }
 
@@ -35,7 +35,6 @@ setup_anaconda()
 
   wget "https://repo.continuum.io/miniconda/${ANACONDA_INSTALL_SCRIPT}" \
   -O "${HOME}/Downloads/${ANACONDA_INSTALL_SCRIPT}"
-
 
   $SHELL "${HOME}/Downloads/${ANACONDA_INSTALL_SCRIPT}"
 
@@ -57,15 +56,16 @@ setup_anaconda()
   # Create base environments (one at a time)
 
   # Version for python 2
-  create_standard_condaenv 2
+  # create_standard_condaenv 2
 
   # Version for python 3
-  create_standard_condaenv 3
+  # create_standard_condaenv 3
 
   # Create alias for jupyter so that it does not open a browser window
   # (useful for tmux sessions) and which can be accessed remotely without
   # the need to create tunnels
-  echo "alias jup='jupyter notebook --no-browser --ip=\"*\"'" >> $ALIASES_FILE
+  # TODO remove, it is already included in aliases?
+  #echo "alias jup='jupyter notebook --no-browser --ip=\"*\"'" >> $ALIASES_FILE
 
   echo -e "\e[93mAnaconda setup complete\e[0m"
 }
