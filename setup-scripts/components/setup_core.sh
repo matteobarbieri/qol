@@ -23,7 +23,8 @@ setup_core()
   openssh-server \
   cmake-curses-gui \
   suckless-tools \
-  cmake pkg-config
+  cmake pkg-config \
+  silversearcher-ag
 
   # Create alias for tmux
   echo "alias tmux='tmux -2'" >> $ALIASES_FILE
