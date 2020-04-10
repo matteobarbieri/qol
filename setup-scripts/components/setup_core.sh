@@ -22,7 +22,6 @@ setup_core()
   unzip \
   openssh-server \
   cmake-curses-gui \
-  suckless-tools \
   cmake pkg-config \
   silversearcher-ag
 

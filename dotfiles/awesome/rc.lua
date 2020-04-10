@@ -845,4 +845,5 @@ awful.util.spawn_with_shell("~/.config/awesome/scripts/locker.sh &")
 awful.util.spawn_with_shell("dropbox start")
 
 -- Start xcompmgr
-awful.util.spawn_with_shell("xcompmgr")
+--awful.util.spawn_with_shell("xcompmgr")
+awful.util.spawn("xcompmgr")

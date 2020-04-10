@@ -24,6 +24,8 @@ setup_awesomewm()
 
     # Install packages for awesomewm
     sudo apt install -y \
+        suckless-tools \
+        xcompmgr \
         awesome \
         awesome-extra
 

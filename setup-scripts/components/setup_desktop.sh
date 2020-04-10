@@ -18,7 +18,7 @@ setup_desktop()
   #### Install packages
   ######################
 
-  # Install suckless-tools (includes dmenu), xcompmgr and docky
+  # Install suckless-tools (includes dmenu), xcompmgr
   sudo apt install -y \
       xcompmgr \
       suckless-tools
