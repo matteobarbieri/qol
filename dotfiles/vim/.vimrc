@@ -57,7 +57,8 @@ Plugin 'nanotech/jellybeans.vim'
 Plugin 'crusoexia/vim-monokai'
 
 " Search any file
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
+
 
 " Show buffers at the bottom of the screen
 Plugin 'bling/vim-bufferline'
@@ -91,6 +92,9 @@ Plugin 'python-mode/python-mode'
 
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'junegunn/fzf.vim'
+
+" Cool icons for file types
+Plugin 'ryanoasis/vim-devicons'
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<c-space>"
