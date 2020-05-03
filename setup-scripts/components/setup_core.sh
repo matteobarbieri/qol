@@ -5,9 +5,6 @@
 setup_core()
 {
 
-  # Read the aliases file path as first parameter
-  ALIASES_FILE=$1
-
   ######################
   #### Install packages
   ######################
@@ -25,9 +22,6 @@ setup_core()
   cmake pkg-config \
   silversearcher-ag
 
-  # Create alias for tmux
-  echo "alias tmux='tmux -2'" >> $ALIASES_FILE
-  
   # Add custom git aliases to .gitconfig
   cat `realpath "${SCRIPTPATH}/../dotfiles/.gitconfig"` >> ~/.gitconfig
 
@@ -36,5 +30,11 @@ setup_core()
 
   # Create symlink to .tmux.conf
   ln -s `realpath "${SCRIPTPATH}/../dotfiles/.tmux.conf"` ~/.tmux.conf
+
+  # Create backup copy of existing ~/.aliases file
+  [ -f ~/.aliases ] && mv ~/.aliases ~/.aliases.bak
+
+  # Create symlink to .aliases file
+  ln -s `realpath "${SCRIPTPATH}/../dotfiles/.aliases"` ~/.aliases
 
 }
