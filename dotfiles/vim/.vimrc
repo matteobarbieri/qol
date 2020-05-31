@@ -90,6 +90,9 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 " Python mode
 Plugin 'python-mode/python-mode'
 
+" Jinja syntax highlighting
+Plugin 'Glench/Vim-Jinja2-Syntax'
+
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'junegunn/fzf.vim'
 
@@ -199,3 +202,6 @@ map <F9> :YcmCompleter FixIt<CR>
 " Mappings for fuzzy finder
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
+
+" Start fuzzy search in files
+map <c-x><c-f> :Ag<CR>
