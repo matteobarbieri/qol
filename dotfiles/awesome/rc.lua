@@ -588,12 +588,19 @@ globalkeys = my_table.join(
     awful.key({ modkey }, "p", function() menubar.show() end,
               {description = "show the menubar", group = "launcher"})
     --]]
+
     -- dmenu
     awful.key({ modkey }, "r", function ()
             os.execute(string.format("dmenu_run -i -fn 'Monospace' -nb '%s' -nf '%s' -sb '%s' -sf '%s'",
             beautiful.bg_normal, beautiful.fg_normal, beautiful.bg_focus, beautiful.fg_focus))
         end,
         {description = "show dmenu", group = "launcher"}),
+
+    -- Take a quick note
+    awful.key({ modkey }, "o", function ()
+            os.execute(string.format("%s -e %s", terminal, "~/repo/qol/scripts/quicknote.sh"))
+        end,
+        {description = "Quick note", group = "launcher"}),
 
     --[[
     -- Prompt
