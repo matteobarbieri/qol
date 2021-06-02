@@ -99,6 +99,13 @@ Plugin 'junegunn/fzf.vim'
 " Cool icons for file types
 Plugin 'ryanoasis/vim-devicons'
 
+" JSX syntax highlighting
+Plugin 'yuezk/vim-js'
+Plugin 'maxmellon/vim-jsx-pretty'
+
+" Black formatter for python
+Plugin 'psf/black'
+
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<c-space>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
@@ -177,6 +184,12 @@ set ts=4 sw=4 sts=4 et
 " Quick save with <Leader>s
 noremap <Leader>s :update<CR>
 
+" :Gwrite with <Leader>w
+noremap <Leader>w :Gwrite<CR>
+
+" :Gstatus with <Leader>e
+noremap <Leader>e :Gstatus<CR>
+
 " Set syntax check mode for python to python3 (python-mode)
 let g:pymode_python = 'python3'
 
@@ -185,13 +198,19 @@ let g:pymode_python = 'python3'
 " E402 - import not at top of file
 " E722 - bare except
 let g:pymode_lint_ignore = ["E116", "E117", "E402", "E722"]
+let g:pymode_options_colorcolumn = 1
+let g:pymode_options_max_line_length = 88
+
+" Enable rope
+let g:pymode_rope = 1
+let g:pymode_rope_goto_definition_cmd = 'tabedit'
 
 " Had to disable this due to bad interaction with multi cursors
 " Check while editing
 "let g:pymode_lint_on_fly = 1
 
 " Also check if save but not modified
-let g:pymode_lint_unmodified = 1
+let g:pymode_lint_unmodified = 0
 
 " Ignore certain types of files
 set wildignore+=*.o,*.so,*.swp,*.zip     " MacOSX/Linux
