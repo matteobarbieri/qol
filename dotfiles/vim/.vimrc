@@ -184,7 +184,7 @@ let g:pymode_python = 'python3'
 " E116 - inconsistent indentation on commented line
 " E402 - import not at top of file
 " E722 - bare except
-let g:pymode_lint_ignore = ["E116", "E402", "E722"]
+let g:pymode_lint_ignore = ["E116", "E117", "E402", "E722"]
 
 " Had to disable this due to bad interaction with multi cursors
 " Check while editing
