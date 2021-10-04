@@ -14,7 +14,7 @@ print_help()
   echo "Quality of Life script"
   echo "Install common use programs and packages and custom configurations"
   echo "Usage:"
-  echo "./setup_lubuntu.sh"
+  echo "./setup_ubuntu.sh"
 }
 
 # Print a recap of all components that are about to be installed/configured
@@ -33,6 +33,34 @@ recap_choices()
     echo "Installation cancelled"
     exit 1
   fi
+}
+
+show_whiptail_menu()
+{
+
+  # Show menu
+  COMPONENTS=$(
+    NEWT_COLORS='
+    root=,black
+    checkbox=white,black
+    actcheckbox=white,magenta
+    border=white,black
+    window=,black
+    button=white,magenta' \
+        whiptail --checklist "Choose which component to install (SPACE to toggle)" 16 95 7 \
+    "core" "Core programs (htop, tmux et similia)" on \
+    "zsh" "Zsh shell and antigen (plus a fancy theme for oh-my-zsh)" on \
+    "anaconda" "Anaconda (Python framework plus default virtual envs)" on \
+    "vim" "Vim text editor (plus several Vundle plugins and custom .vimrc)" on \
+    "awesomewm" "Awesome window manager (plus themes and plugins)" off \
+    "desktop" "Desktop programs (Docky, Google Chrome and more)" off \
+    "xfce4-terminal" "The xfce4-terminal (and cool color schemes)" on \
+    3>&1 1>&2 2>&3) # needed to redirect output to variable
+
+  # Remove airquotes
+  COMPONENTS=$(sed -e 's/"//g' <<< "$COMPONENTS")
+
+  echo $COMPONENTS
 }
 
 main()
@@ -66,27 +94,15 @@ main()
     exit 0
   fi
 
-  # Show menu
-  COMPONENTS=$(
-    NEWT_COLORS='
-    root=,black
-    checkbox=white,black
-    actcheckbox=white,magenta
-    border=white,black
-    window=,black
-    button=white,magenta' \
-        whiptail --checklist "Choose which component to install (SPACE to toggle)" 16 95 7 \
-    "core" "Core programs (htop, tmux et similia)" on \
-    "zsh" "Zsh shell and antigen (plus a fancy theme for oh-my-zsh)" on \
-    "anaconda" "Anaconda (Python framework plus default virtual envs)" on \
-    "vim" "Vim text editor (plus several Vundle plugins and custom .vimrc)" on \
-    "awesomewm" "Awesome window manager (plus themes and plugins)" off \
-    "desktop" "Desktop programs (Docky, Google Chrome and more)" off \
-    "xfce4-terminal" "The xfce4-terminal (and cool color schemes)" on \
-    3>&1 1>&2 2>&3) # needed to redirect output to variable
+  # Check for the existence of whiptail
+  # TODO
 
-  # Remove airquotes
-  COMPONENTS=$(sed -e 's/"//g' <<< "$COMPONENTS")
+
+  COMPONENTS=$(show_whiptail_menu)
+
+  #echo $COMPONENTS
+  #exit 0
+
 
    if [ -z "$COMPONENTS" ]; then
      echo "No components selected, leaving installation."
@@ -96,7 +112,7 @@ main()
   # Recap the components that are about to be installed
   recap_choices $COMPONENTS
 
-  COMPONENTS_PATH="${SCRIPTPATH}/components"
+  COMPONENTS_PATH="${SCRIPTPATH}/setup-scripts/components"
 
   for C in $COMPONENTS; do
     # For each component, source the corresponding file and
