@@ -89,30 +89,41 @@ main()
   done
   set -- "${POSITIONAL[@]}" # restore positional parameters
 
+  # Display help and exit
   if [ $HELP ]; then
     print_help
     exit 0
   fi
 
   # Check for the existence of whiptail
-  # TODO
+  which whiptail 2> /dev/null > /dev/null
+  WHIPTAIL_DOESNT_EXIST=$?
+  #[ $WHIPTAIL_DOESNT_EXIST = 0 ] && COMPONENTS=$(show_whiptail_menu)
 
+  # Without whiptail, take the list of components from the rest of arguments
+  # passed.
+  [ $WHIPTAIL_DOESNT_EXIST = 0 ] || COMPONENTS=$@
 
-  COMPONENTS=$(show_whiptail_menu)
+  COMPONENTS_PATH="${SCRIPTPATH}/setup-scripts/components"
 
-  #echo $COMPONENTS
-  #exit 0
+  if [ -z "$COMPONENTS" ]; then
+    echo "No components selected, leaving installation."
+    exit 0
+  fi
 
-
-   if [ -z "$COMPONENTS" ]; then
-     echo "No components selected, leaving installation."
-     exit 0
-   fi
+  for C in $COMPONENTS; do
+      if [ -f "${COMPONENTS_PATH}/setup_${C}.sh" ]
+      then
+          :
+      else
+         echo "Component $C not found, exiting";
+         exit 0;
+      fi
+      
+  done
 
   # Recap the components that are about to be installed
   recap_choices $COMPONENTS
-
-  COMPONENTS_PATH="${SCRIPTPATH}/setup-scripts/components"
 
   for C in $COMPONENTS; do
     # For each component, source the corresponding file and
