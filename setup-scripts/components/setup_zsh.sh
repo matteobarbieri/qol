@@ -1,5 +1,7 @@
 #!/bin/bash
 
+[ $(whoami) = root ] || SUDO=sudo
+
 ######################
 #### Install packages
 ######################
@@ -52,7 +54,7 @@ install_antigen()
   fi
 
   # Copy the .zshrc
-  cp "${SCRIPTPATH}/../dotfiles/zsh/.zshrc" ~/.zshrc
+  cp "${SCRIPTPATH}/dotfiles/zsh/.zshrc" ~/.zshrc
 
   # Backup possibly existing ~/.powerlevelrc file
   if [ -f ~/.powerlevelrc ]; then
@@ -63,20 +65,21 @@ install_antigen()
   # Copy the configuration file for the powerlevel9k theme
   # (adds a very fancy prompt)
   #cp "${SCRIPTPATH}/../dotfiles/zsh/.powerlevelrc" ~/.powerlevelrc
-  ln -s `realpath "${SCRIPTPATH}/../dotfiles/zsh/.powerlevelrc"` ~/.powerlevelrc
+  #ln -s `realpath "${SCRIPTPATH}/dotfiles/zsh/.powerlevelrc"` ~/.powerlevelrc
+  cp `realpath "${SCRIPTPATH}/dotfiles/zsh/.powerlevelrc"` ~/.powerlevelrc
 
 }
 
 setup_zsh()
 {
   # Install zsh
-  sudo apt -y install zsh
+  $SUDO apt -y install zsh
 
   ZSH=$(which zsh)
 
   # change the default shell to zsh
   echo -e "\e[92mEnter user password to change the current shell to zsh\e[0m"
-  sudo chsh $USER -s $ZSH
+  $SUDO chsh $USER -s $ZSH
 
   # change the SHELL environment variable
   export SHELL=$ZSH
