@@ -21,3 +21,6 @@ alias vv='view'
 # Snippet for smart choosing conda environment to activate
 # .a $(conda env list | cut -f 1 -d ' ' | fzf)
 [ -f ~/.aliases.local ] && source ~/.aliases.local
+
+# Add alias for kubectl
+alias k='kubectl'
