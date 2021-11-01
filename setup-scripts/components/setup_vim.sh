@@ -2,6 +2,8 @@
 
 # ALIASES_FILE=~/.aliases
 
+[ $(whoami) = root ] || SUDO=sudo
+
 # Installs vim and a few plugins
 
 install_awesome_vimrc()
@@ -27,7 +29,7 @@ install_vundle()
   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
   # Create a symlink to .vimrc file
-  ln -s $SCRIPTPATH/../dotfiles/vim/.vimrc ~/.vimrc
+  ln -s $SCRIPTPATH/dotfiles/vim/.vimrc ~/.vimrc
 
   # Toggle vim installation for all specified plugins
   vim +PluginInstall +qall
@@ -43,8 +45,7 @@ setup_vim()
   ######################
 
   # Install vim
-
-  sudo apt -y install vim exuberant-ctags
+  $SUDO apt -y install vim exuberant-ctags
 
   # install_awesome_vimrc
   install_vundle
