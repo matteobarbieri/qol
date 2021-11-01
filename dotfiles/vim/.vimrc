@@ -141,6 +141,7 @@ let g:airline_powerline_fonts = 1
 " YCM: autoclose docs window after insertion/completion
 " let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_min_num_of_chars_for_completion = 99
 
 " Use current virtualenv python for autocompletion
 let g:ycm_python_binary_path = 'python'
@@ -202,8 +203,10 @@ let g:pymode_options_colorcolumn = 1
 let g:pymode_options_max_line_length = 88
 
 " Enable rope
-let g:pymode_rope = 1
-let g:pymode_rope_goto_definition_cmd = 'tabedit'
+let g:pymode_rope = 0
+"let g:pymode_rope_completion = 1
+"let g:pymode_rope_complete_on_dot = 0
+"let g:pymode_rope_goto_definition_cmd = 'tabedit'
 
 " Had to disable this due to bad interaction with multi cursors
 " Check while editing
