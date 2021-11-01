@@ -20,9 +20,9 @@ POWERLEVEL9K_CUSTOM_NEW_MAIL_FOREGROUND="black"
 
 # Prompts
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-  POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(battery ssh context dir anaconda vcs)
+  POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(battery ssh context dir anaconda kubecontext vcs)
 else
-  POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(battery user dir anaconda vcs)
+  POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(battery user dir anaconda kubecontext vcs)
 fi
 #POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator battery custom_now_playing time)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator custom_new_mail background_jobs disk_usage ram time)
