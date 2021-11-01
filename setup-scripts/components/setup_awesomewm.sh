@@ -1,5 +1,7 @@
 #!/bin/bash
 
+[ $(whoami) = root ] || SUDO=sudo
+
 install_awesomewm_stuff()
 {
     # Make sure destination folder exists
@@ -10,10 +12,10 @@ install_awesomewm_stuff()
     mv -bv awesome-copycats/* ~/.config/awesome && rm -rf awesome-copycats
 
     # Create a symlink to rc.lua file
-    ln -s $SCRIPTPATH/../dotfiles/awesome/rc.lua ~/.config/awesome/rc.lua
+    ln -s $SCRIPTPATH/dotfiles/awesome/rc.lua ~/.config/awesome/rc.lua
 
     # Create a symlink to the folder containing flag icons for keyboard layout
-    ln -s $SCRIPTPATH/../resources/awesome/country_flags ~/.config/awesome/
+    ln -s $SCRIPTPATH/resources/awesome/country_flags ~/.config/awesome/
 }
 
 setup_awesomewm()
@@ -23,7 +25,7 @@ setup_awesomewm()
     ######################
 
     # Install packages for awesomewm
-    sudo apt install -y \
+    $SUDO apt install -y \
         suckless-tools \
         xcompmgr \
         awesome \
