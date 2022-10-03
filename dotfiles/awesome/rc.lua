@@ -307,9 +307,9 @@ globalkeys = my_table.join(
     awful.key({ "Control", altkey }, "t", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
 
-    ---- Alternatuve shortcut for terminal
-    --awful.key({ modkey }, "e", function () awful.spawn("nautilus") end,
-              --{description = "File manager", group = "launcher"}),
+    -- Alternatuve shortcut for terminal
+    awful.key({ modkey }, "e", function () awful.spawn("thunar") end,
+              {description = "File manager", group = "launcher"}),
 
     -- Alternatuve shortcut for terminal
     awful.key({ modkey }, "e", function () awful.spawn("pcmanfm") end,
