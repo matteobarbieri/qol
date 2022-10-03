@@ -98,7 +98,7 @@ main()
   # Check for the existence of whiptail
   which whiptail 2> /dev/null > /dev/null
   WHIPTAIL_DOESNT_EXIST=$?
-  #[ $WHIPTAIL_DOESNT_EXIST = 0 ] && COMPONENTS=$(show_whiptail_menu)
+  [ $WHIPTAIL_DOESNT_EXIST = 0 ] && COMPONENTS=$(show_whiptail_menu)
 
   # Without whiptail, take the list of components from the rest of arguments
   # passed.
