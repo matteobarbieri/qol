@@ -76,7 +76,7 @@ Plugin 'tmhedberg/SimpylFold'
 Plugin 'majutsushi/tagbar'
 
 " PEP8 checker
-Plugin 'nvie/vim-flake8'
+"Plugin 'nvie/vim-flake8'
 
 " Track the engine.
 Plugin 'SirVer/ultisnips'
@@ -197,8 +197,9 @@ let g:pymode_python = 'python3'
 " Ignore certain errors/warnings:
 " E116 - inconsistent indentation on commented line
 " E402 - import not at top of file
+" E203 - colon usage in slicing
 " E722 - bare except
-let g:pymode_lint_ignore = ["E116", "E117", "E402", "E722"]
+let g:pymode_lint_ignore = ["E116", "E117", "E402", "E203", "E722"]
 let g:pymode_options_colorcolumn = 1
 let g:pymode_options_max_line_length = 88
 
