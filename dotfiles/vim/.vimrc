@@ -107,7 +107,7 @@ Plugin 'maxmellon/vim-jsx-pretty'
 Plugin 'psf/black'
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<c-space>"
+"let g:UltiSnipsExpandTrigger="<c-space>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
@@ -208,6 +208,8 @@ let g:pymode_rope = 0
 "let g:pymode_rope_completion = 1
 "let g:pymode_rope_complete_on_dot = 0
 "let g:pymode_rope_goto_definition_cmd = 'tabedit'
+
+let g:ycm_min_num_of_chars_for_completion = 4
 
 " Had to disable this due to bad interaction with multi cursors
 " Check while editing
