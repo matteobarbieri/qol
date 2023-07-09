@@ -230,3 +230,5 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 
 " Start fuzzy search in files
 map <c-x><c-f> :Ag<CR>
+
+set encoding=utf-8
