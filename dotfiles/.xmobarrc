@@ -1,5 +1,7 @@
 Config { overrideRedirect = False
-       , font     = "xft:iosevka-14"
+       -- , font     = "xft:iosevka-14"
+       -- , font     = "xft:Hack Nerd Font 16" -- does not work
+       , font     = "xft:Mononoki Nerd Font Mono:size=14"
        , bgColor  = "#5f5f5f"
        , fgColor  = "#f8f8f2"
        , position = TopW L 90

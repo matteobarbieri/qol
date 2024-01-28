@@ -18,13 +18,14 @@ import Graphics.X11.ExtraTypes.XF86
 
 import XMonad.Util.Loggers
 
+import XMonad.Actions.GridSelect
 
 
 main :: IO ()
 main = xmonad 
     . ewmhFullscreen 
     . ewmh
-    . withEasySB (statusBarProp "xmobar" (pure myXmobarPP)) defToggleStrutsKey
+     . withEasySB (statusBarProp "xmobar" (pure myXmobarPP)) defToggleStrutsKey
     $ myConfig
 
 myConfig = def
@@ -41,6 +42,7 @@ myKeys =
     , ("M-C-s", unGrab *> spawn "scrot -s"        )
     , ("M-e"  , spawn "thunar"                   )
     , ("M-S-b"  , spawn "google-chrome"                   ) -- to change
+    , ("M-g", goToSelected def)
     , ("<XF86MonBrightnessUp>", spawn "lux -a 10%")
     , ("<XF86MonBrightnessDown>", spawn "lux -s 10%")
     ]
