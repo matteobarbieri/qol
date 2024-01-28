@@ -19,12 +19,16 @@ setup_core()
   git \
   tmux \
   htop \
+  picom \ # compositor
   wget \
   unzip \
   openssh-server \
   cmake-curses-gui \
   cmake pkg-config \
   silversearcher-ag
+
+  BAT_VERSION=0.24.0
+  FD_VERSION=9.0.0
 
   # Add custom git aliases to .gitconfig
   cat `realpath "${SCRIPTPATH}/dotfiles/.gitconfig"` >> ~/.gitconfig
@@ -47,18 +51,18 @@ setup_core()
   mkdir -p ~/Downloads
 
   wget \
-    https://github.com/sharkdp/bat/releases/download/v0.18.2/bat_0.18.2_amd64.deb \
-    -O ~/Downloads/bat_0.18.2_amd64.deb
+    https://github.com/sharkdp/bat/releases/download/v${BAT_VERSION}/bat_${BAT_VERSION}_amd64.deb \
+    -O ~/Downloads/bat_${BAT_VERSION}_amd64.deb
 
-  $SUDO dpkg -i ~/Downloads/bat_0.18.2_amd64.deb
+  $SUDO dpkg -i ~/Downloads/bat_${BAT_VERSION}_amd64.deb
 
   # Download and install `fd` (user friendlier replacement of `find`)
   # TODO make it system-dependent (should download a different package depending
   # on the machine on which it is installed)
   wget \
-    https://github.com/sharkdp/fd/releases/download/v8.2.1/fd_8.2.1_amd64.deb \
-    -O ~/Downloads/fd_8.2.1_amd64.deb
+    https://github.com/sharkdp/fd/releases/download/v${FD_VERSION}/fd_${FD_VERSION}_amd64.deb \
+    -O ~/Downloads/fd_${FD_VERSION}_amd64.deb
 
-  $SUDO dpkg -i ~/Downloads/fd_8.2.1_amd64.deb
+  $SUDO dpkg -i ~/Downloads/fd_${FD_VERSION}_amd64.deb
 
 }
