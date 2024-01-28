@@ -23,13 +23,6 @@ import XMonad.Actions.GridSelect
 -- Configuration for grid select
 gsconfig1 = def { gs_cellheight = 90, gs_cellwidth = 300 }
 
-main :: IO ()
-main = xmonad 
-    . ewmhFullscreen 
-    . ewmh
-     . withEasySB (statusBarProp "xmobar" (pure myXmobarPP)) defToggleStrutsKey
-    $ myConfig
-
 myConfig = def
     { modMask    = mod4Mask  -- Rebind Mod to the Super key
     , terminal = "xfce4-terminal"
@@ -86,6 +79,14 @@ myXmobarPP = def
     yellow   = xmobarColor "#f1fa8c" ""
     red      = xmobarColor "#ff5555" ""
     lowWhite = xmobarColor "#bbbbbb" ""
+
+main :: IO ()
+main = xmonad 
+    . ewmhFullscreen 
+    . ewmh
+     . withEasySB (statusBarProp "xmobar" (pure myXmobarPP)) defToggleStrutsKey
+    $ myConfig
+
 
 -- Notes
 -- lux is required for handling brightness
