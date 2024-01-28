@@ -29,9 +29,6 @@ install_nerdfonts()
   # Unzip the ttf files directly in that folder
   unzip "$ZIP_DST" -d ~/.local/share/fonts
 
-  # Refresh font cache
-  fc-cache -fv
-
   # echo -e "\e[92mFonts installed, manually change it in the terminal in order to properly display non standard glyphs\e[0m"
   echo -e "\e[92mNerdfonts ${FONT_NAME} installed\e[0m"
 
@@ -44,6 +41,10 @@ install_antigen()
 
   # Download and install nerdfonts, passing the font name as parameter
   install_nerdfonts Hack
+  install_nerdfonts Mononoki
+
+  # Refresh font cache
+  fc-cache -fv
 
   # TODO repeated code, create function
 
