@@ -20,6 +20,8 @@ import XMonad.Util.Loggers
 
 import XMonad.Actions.GridSelect
 
+-- Configuration for grid select
+gsconfig1 = def { gs_cellheight = 90, gs_cellwidth = 300 }
 
 main :: IO ()
 main = xmonad 
@@ -40,9 +42,10 @@ myConfig = def
 myKeys =
     [ ("M-S-z", spawn "xscreensaver-command -lock")
     , ("M-C-s", unGrab *> spawn "scrot -s"        )
+    , ("M-p", spawn "dmenu_run -fn 'FiraCode-14'")
     , ("M-e"  , spawn "thunar"                   )
     , ("M-S-b"  , spawn "google-chrome"                   ) -- to change
-    , ("M-g", goToSelected def)
+    , ("M-g", goToSelected gsconfig1)
     , ("<XF86MonBrightnessUp>", spawn "lux -a 10%")
     , ("<XF86MonBrightnessDown>", spawn "lux -s 10%")
     ]
