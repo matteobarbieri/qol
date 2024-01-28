@@ -52,6 +52,7 @@ myStartupHook = do
   spawnOnce "trayer --edge top --align right --SetDockType true \
             \--SetPartialStrut true --expand true --width 10 \
             \--transparent true --tint 0x5f5f5f --height 48 &"
+  spawnOnce "picom &"
   --spawnOnce "feh --bg-fill --no-fehbg ~/.wallpapers/haskell-red-noise.png"
 
 
