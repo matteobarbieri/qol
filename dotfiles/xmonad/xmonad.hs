@@ -21,7 +21,11 @@ import XMonad.Util.Loggers
 import XMonad.Actions.GridSelect
 
 -- Configuration for grid select
-gsconfig1 = def { gs_cellheight = 90, gs_cellwidth = 300 }
+gsconfig1 = def 
+    { gs_cellheight = 90
+    , gs_cellwidth = 300 
+    , gs_font = "xft:Mononoki Nerd Font Mono:size=10"
+    }
 
 myConfig = def
     { modMask    = mod4Mask  -- Rebind Mod to the Super key
@@ -49,6 +53,7 @@ myStartupHook = do
             \--SetPartialStrut true --expand true --width 10 \
             \--transparent true --tint 0x5f5f5f --height 48 &"
   spawnOnce "picom &"
+  spawnOnce "setxkbmap -layout us,it,se -option 'grp:alt_shift_toggle'"
   --spawnOnce "feh --bg-fill --no-fehbg ~/.wallpapers/haskell-red-noise.png"
 
 
@@ -84,7 +89,7 @@ main :: IO ()
 main = xmonad 
     . ewmhFullscreen 
     . ewmh
-     . withEasySB (statusBarProp "xmobar" (pure myXmobarPP)) defToggleStrutsKey
+    . withEasySB (statusBarProp "xmobar" (pure myXmobarPP)) defToggleStrutsKey
     $ myConfig
 
 
