@@ -5,7 +5,7 @@ config =
     defaultConfig
       -- { 
       { 
-        font = "xft:Mononoki Nerd Font:size=14",
+        font = "xft:Mononoki Nerd Font:size=14:style=Bold",
         additionalFonts = ["xft:iosevka-14", "xft:Mononoki Nerd Font:size=14"],
         overrideRedirect = False,
         bgColor  = "#5f5f5f",
@@ -45,15 +45,9 @@ config =
                         "-h", "green",
                         "-l", "red"
                         ] 10
-                    -- https://codeberg.org/xmobar/xmobar/src/branch/master/doc/plugins.org#user-content-volume
-                    --, Run $ Alsa "default" "Master"
-                        --[ "--template", "<fn=2>\xf057e </fn><volumestatus>"
-                        --, "--suffix"  , "True"
-                        --, "--"
-                        --, "--on", ""
-                        --]
                     --, Run $ Volume "default" "Master"
                      --[] 10
+                    -- https://codeberg.org/xmobar/xmobar/src/branch/master/doc/plugins.org#user-content-volume
                     , Run $ Alsa "default" "Master"
                         [ "--template", "<fn=2>\xf057e </fn><volumestatus>"
                         , "--suffix"  , "True"
@@ -62,7 +56,7 @@ config =
                         ]
                     , Run $ Memory ["--template", "Mem: <usedratio>%"] 10
                     --, Run Swap [] 10
-                    , Run $ Date "<fn=2>\xf073 </fn> %a %Y-%m-%d <fc=#8be9fd><fn=2>\xf017 </fn>%H:%M</fc>" "date" 10
+                    , Run $ Date "<fc=#8be9fd><fn=2>\xf073 </fn> %a %Y-%m-%d <fn=2>\xf017 </fn>%H:%M</fc>" "date" 10
                     , Run XMonadLog
                     ],
        sepChar  = "%",
