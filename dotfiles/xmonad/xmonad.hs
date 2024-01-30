@@ -37,7 +37,7 @@ myConfig = def
     myKeys
 
 myKeys =
-    [ ("M-S-z", spawn "xscreensaver-command -lock")
+    [ ("M-S-z", spawn "slock")
     , ("M-C-s", unGrab *> spawn "scrot -s"        )
     , ("M-p", spawn "dmenu_run -fn 'FiraCode-14'")
     , ("M-e"  , spawn "thunar"                   )
