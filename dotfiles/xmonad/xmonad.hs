@@ -23,8 +23,8 @@ import XMonad.Actions.GridSelect
 -- Configuration for grid select
 gsconfig1 = def 
     { gs_cellheight = 90
-    , gs_cellwidth = 300 
-    , gs_font = "xft:Mononoki Nerd Font Mono:size=10"
+    , gs_cellwidth = 400 
+    , gs_font = "xft:Mononoki Nerd Font:size=10"
     }
 
 myConfig = def
@@ -75,7 +75,7 @@ myXmobarPP = def
     -- | Windows should have *some* title, which should not not exceed a
     -- sane length.
     ppWindow :: String -> String
-    ppWindow = xmobarRaw . (\w -> if null w then "untitled" else w) . shorten 30
+    ppWindow = xmobarRaw . (\w -> if null w then "???" else w) . shorten 13
 
     blue, lowWhite, magenta, red, white, yellow :: String -> String
     magenta  = xmobarColor "#ff79c6" ""
