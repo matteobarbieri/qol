@@ -1,12 +1,19 @@
-Config { overrideRedirect = False
-       -- , font     = "xft:iosevka-14"
-       -- , font     = "xft:Hack Nerd Font 16" -- does not work
-       , font     = "xft:Mononoki Nerd Font Mono:size=14"
-       , additionalFonts = ["xft:iosevka-14", "xft:Mononoki Nerd Font:size=14"]
-       , bgColor  = "#5f5f5f"
-       , fgColor  = "#f8f8f2"
-       , position = TopW L 90
-       , commands = [ Run Weather "EGPF"
+import Xmobar
+
+config :: Config
+config =
+    defaultConfig
+      -- { 
+      { 
+        font = "xft:Mononoki Nerd Font:size=14",
+        additionalFonts = ["xft:iosevka-14", "xft:Mononoki Nerd Font:size=14"],
+        overrideRedirect = False,
+        bgColor  = "#5f5f5f",
+        fgColor  = "#f8f8f2",
+        position = TopW L 90,
+        allDesktops = True,
+        commands = [ 
+                    Run $ Weather "EGPF"
                         [ "--template", "<weather> <tempC>°C"
                         , "-L", "0"
                         , "-H", "25"
@@ -14,18 +21,18 @@ Config { overrideRedirect = False
                         , "--normal", "#f8f8f2"
                         , "--high"  , "red"
                         ] 36000
-                    , Run Cpu
+                    , Run $ Cpu
                         [ "-L", "3"
                         , "-H", "50"
                         , "--high"  , "red"
                         , "--normal", "green"
                         ] 10
-                    , Run Kbd [
+                    , Run $ Kbd [
                         ("us", "<fn=2>\xf097b </fn>US")
                         , ("se", "<fn=2>\xf097b </fn>SE")
                         , ("it", "<fn=2>\xf097b </fn>IT")
                     ]
-                    , Run Battery [
+                    , Run $ Battery [
                         "-t", "<acstatus> <left>%",
                         "--",
                         --"-c", "charge_full",
@@ -39,18 +46,30 @@ Config { overrideRedirect = False
                         "-l", "red"
                         ] 10
                     -- https://codeberg.org/xmobar/xmobar/src/branch/master/doc/plugins.org#user-content-volume
-                    , Run Alsa "default" "Master"
+                    --, Run $ Alsa "default" "Master"
+                        --[ "--template", "<fn=2>\xf057e </fn><volumestatus>"
+                        --, "--suffix"  , "True"
+                        --, "--"
+                        --, "--on", ""
+                        --]
+                    --, Run $ Volume "default" "Master"
+                     --[] 10
+                    , Run $ Alsa "default" "Master"
                         [ "--template", "<fn=2>\xf057e </fn><volumestatus>"
                         , "--suffix"  , "True"
                         , "--"
                         , "--on", ""
                         ]
-                    , Run Memory ["--template", "Mem: <usedratio>%"] 10
-                    , Run Swap [] 10
-                    , Run Date "<fn=2>\xf073 </fn> %a %Y-%m-%d <fc=#8be9fd><fn=2>\xf017 </fn>%H:%M</fc>" "date" 10
+                    , Run $ Memory ["--template", "Mem: <usedratio>%"] 10
+                    --, Run Swap [] 10
+                    , Run $ Date "<fn=2>\xf073 </fn> %a %Y-%m-%d <fc=#8be9fd><fn=2>\xf017 </fn>%H:%M</fc>" "date" 10
                     , Run XMonadLog
-                    ]
-       , sepChar  = "%"
-       , alignSep = "}{"
-       , template = "%XMonadLog% }{ %alsa:default:Master% | %battery% | %kbd% |  %date% "
-       }
+                    ],
+       sepChar  = "%",
+       alpha = 200,
+       template = "%XMonadLog% }{ %alsa:default:Master% | %battery% | %kbd% |  %date% ",
+        alignSep = "}{"
+      }
+
+main :: IO ()
+main = xmobar config  -- or: configFromArgs config >>= xmobar

@@ -86,7 +86,8 @@ myXmobarPP = def
     lowWhite = xmobarColor "#bbbbbb" ""
 
 main :: IO ()
-main = xmonad 
+main = do
+    xmonad 
     . ewmhFullscreen 
     . ewmh
     . withEasySB (statusBarProp "xmobar" (pure myXmobarPP)) defToggleStrutsKey
