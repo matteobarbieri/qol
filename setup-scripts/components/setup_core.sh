@@ -20,6 +20,7 @@ setup_core()
   tmux \
   htop \
   picom \ # compositor
+  suckless-tools \ # dmenu, slock and some more
   wget \
   unzip \
   openssh-server \
