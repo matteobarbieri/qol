@@ -47,11 +47,14 @@ show_whiptail_menu()
     border=white,black
     window=,black
     button=white,magenta' \
-        whiptail --checklist "Choose which component to install (SPACE to toggle)" 16 95 7 \
+        whiptail --checklist \
+        "Choose which component to install (SPACE to toggle)" \
+        20 95 10 \
     "core" "Core programs (htop, tmux et similia)" on \
     "zsh" "Zsh shell and antigen (plus a fancy theme for oh-my-zsh)" on \
     "anaconda" "Anaconda (Python framework plus default virtual envs)" on \
     "vim" "Vim text editor (plus several Vundle plugins and custom .vimrc)" on \
+    "k8s" "Kubernetes-related stuff (docker, helm, terraform, minikube)" on \
     "awesomewm" "Awesome window manager (plus themes and plugins)" off \
     "desktop" "Desktop programs (Docky, Google Chrome and more)" off \
     "xfce4-terminal" "The xfce4-terminal (and cool color schemes)" on \
