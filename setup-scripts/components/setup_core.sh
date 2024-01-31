@@ -31,9 +31,6 @@ setup_core()
   BAT_VERSION=0.24.0
   FD_VERSION=9.0.0
 
-  # Add custom git aliases to .gitconfig
-  cat `realpath "${SCRIPTPATH}/dotfiles/.gitconfig"` >> ~/.gitconfig
-
   # Install tmux plugin manager
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
@@ -43,8 +40,9 @@ setup_core()
   # Create backup copy of existing ~/.aliases file
   [ -f ~/.aliases ] && mv ~/.aliases ~/.aliases.bak
 
-  # Create symlink to .aliases file
+  # Create symlinks to dotfiles
   ln -s `realpath "${SCRIPTPATH}/dotfiles/.aliases"` ~/.aliases
+  ln -s `realpath "${SCRIPTPATH}/dotfiles/.gitconfig"` ~/.gitconfig
 
   # Download and install bat (cool replacement for cat)
   # TODO make it system-dependent (should download a different package depending
