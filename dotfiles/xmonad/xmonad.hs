@@ -20,6 +20,9 @@ import XMonad.Util.Loggers
 
 import XMonad.Actions.GridSelect
 
+mycolor_green :: String
+mycolor_green = "#C3D82C"
+
 -- Configuration for grid select
 gsconfig1 = def 
     { gs_cellheight = 90
@@ -32,7 +35,8 @@ myConfig = def
     , terminal = "xfce4-terminal"
     --, layoutHook = myLayout  -- Use custom layouts
     , startupHook = myStartupHook
-    , focusedBorderColor = "#C3D82C"
+    --, focusedBorderColor = "#C3D82C"
+    , focusedBorderColor = mycolor_green
     , borderWidth = 2
     }
     `additionalKeysP`
