@@ -45,6 +45,10 @@ myKeys =
     , ("M-g", goToSelected gsconfig1)
     , ("<XF86MonBrightnessUp>", spawn "lux -a 10%")
     , ("<XF86MonBrightnessDown>", spawn "lux -s 10%")
+    , ("<XF86AudioLowerVolume>", spawn "amixer -q sset Master 2%-")
+    , ("<XF86AudioRaiseVolume>", spawn "amixer -q sset Master 2%+")
+    , ("<XF86AudioMute>", spawn "amixer -D pulse set Master toggle")
+
     ]
 
 myStartupHook :: X ()
