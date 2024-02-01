@@ -32,6 +32,8 @@ myConfig = def
     , terminal = "xfce4-terminal"
     --, layoutHook = myLayout  -- Use custom layouts
     , startupHook = myStartupHook
+    , focusedBorderColor = "#C3D82C"
+    , borderWidth = 2
     }
     `additionalKeysP`
     myKeys
