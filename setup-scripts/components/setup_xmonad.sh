@@ -2,37 +2,45 @@
 
 [ $(whoami) = root ] || SUDO=sudo
 
-install_awesomewm_stuff()
+setup_xmobar()
 {
-     #Make sure destination folder exists
-    #mkdir -p ~/.config/awesome
-
-     #Install custom version of awesome-copycatz
-    #git clone --recursive https://github.com/matteobarbieri/awesome-copycats
-    #mv -bv awesome-copycats/* ~/.config/awesome && rm -rf awesome-copycats
-
-     #Create a symlink to rc.lua file
-    #ln -s $SCRIPTPATH/dotfiles/awesome/rc.lua ~/.config/awesome/rc.lua
-
-     #Create a symlink to the folder containing flag icons for keyboard layout
-    #ln -s $SCRIPTPATH/resources/awesome/country_flags ~/.config/awesome/
-}
-
-setup_xmonad()
-{
-    ######################
-    #### Install packages
-    ######################
-
-    # Install packages for awesomewm
-    $SUDO apt install -y \
-        picom \
-        libasound2-dev
-
+    # TODO remove this
+    ls > /dev/null
 
     # xmobar installation command: 
     # cabal install --lib xmobar --flags="with_xft with_alsa"
 
-    # Install plugins and themes
-    #install_awesomewm_stuff
+
+}
+
+setup_xmonad()
+{
+    # Install packages for XMonad
+    $SUDO apt install -y \
+        haskell-stack \
+        libx11-dev libxft-dev libxinerama-dev libxrandr-dev libxss-dev \
+        libasound2-dev
+
+    # Upgrade stack
+    stack upgrade
+
+    # Download xmonad sources
+    mkdir -p ~/.config/xmonad
+
+    git clone https://github.com/xmonad/xmonad-contrib ~/.config/xmonad/xmonad-contrib
+    git clone https://github.com/xmonad/xmonad ~/.config/xmonad/xmonad
+
+    # Install Xmonad
+    cd ~/.config/xmonad
+
+    stack init
+    stack install
+
+    # Add Xmonad to the list of available sessions
+    $SUDO cp "${SCRIPTPATH}/dotfiles/xmonad.desktop" /usr/share/xsessions
+
+    # Link dotfiles
+    ln -s ${SCRIPTPATH}/dotfiles/xmonad/xmonad.hs ~/.config/xmonad/xmonad.hs
+
+    setup_xmobar
 }

@@ -6,7 +6,7 @@ ALIASES_FILE=~/.aliases
 # sudo apt update
 
 # Location of the script. NOTE: does not have trailing '/'
-# It should probably look something like /home/user/repo/qol/setup_scripts
+# It should probably look something like /home/user/repo/qol
 export SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 
 print_help()
@@ -52,12 +52,13 @@ show_whiptail_menu()
         20 95 10 \
     "core" "Core programs (htop, tmux et similia)" on \
     "zsh" "Zsh shell and antigen (plus a fancy theme for oh-my-zsh)" on \
-    "anaconda" "Anaconda (Python framework plus default virtual envs)" on \
+    "xfce4-terminal" "The xfce4-terminal (and cool color schemes)" on \
     "vim" "Vim text editor (plus several Vundle plugins and custom .vimrc)" on \
+    "xmonad" "Xmonad window manager" on \
     "k8s" "Kubernetes-related stuff (docker, helm, terraform, minikube)" on \
     "awesomewm" "Awesome window manager (plus themes and plugins)" off \
     "desktop" "Desktop programs (Docky, Google Chrome and more)" off \
-    "xfce4-terminal" "The xfce4-terminal (and cool color schemes)" on \
+    "anaconda" "Anaconda (Python framework plus default virtual envs)" off \
     3>&1 1>&2 2>&3) # needed to redirect output to variable
 
   # Remove airquotes
