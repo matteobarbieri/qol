@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Name=Xmonad
+Comment=Use this session to run Xmonad as your desktop environment
+Exec=/home/matteo/.local/bin/xmonad
+Icon=
+Type=Application
+DesktopNames=Xmonad
