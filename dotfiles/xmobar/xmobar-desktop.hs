@@ -27,8 +27,8 @@ config =
       -- { 
       { 
         --font = "xft:Mononoki Nerd Font:size=28:style=Bold",
-        font = "mononoki Nerd Font 14",
-        additionalFonts = ["xft:iosevka-14", "mononoki Nerd Font 14"],
+        font = "Mononoki Nerd Font 14",
+        additionalFonts = ["CommitMono Nerd Font Propo 14"],
         --additionalFonts = ["xft:iosevka-14", "xft:Mononoki Nerd Font:size=14"],
         overrideRedirect = False,
         bgColor  = my_bgcolor,
@@ -52,8 +52,8 @@ config =
                         ] 10
                     , Run $ Kbd [
                         ("us", "\xf097b US")
-                        , ("se", "<fn=2>\xf097b </fn>SE")
-                        , ("it", "<fn=2>\xf097b </fn>IT")
+                        , ("se", "\xf097b SE")
+                        , ("it", "\xf097b IT")
                     ]
                     -- https://codeberg.org/xmobar/xmobar/src/branch/master/doc/plugins.org#user-content-volume
                     , Run $ Alsa "default" "Master"
@@ -62,10 +62,10 @@ config =
                           "--template", "<volumestatus>"
                         , "--suffix"  , "True"
                         , "--"
-                        , "-l", "<fn=2>\xf057f </fn>"
-                        , "-m", "<fn=2>\xf0580 </fn>"
-                        , "-h", "<fn=2>\xf057e </fn>"
-                        , "--off", "<fn=2>\xf075f </fn>"
+                        , "-l", "<fn=1>\xf057f </fn>"
+                        , "-m", "<fn=1>\xf0580 </fn>"
+                        , "-h", "<fn=1>\xf057e </fn>"
+                        , "--off", "<fn=1>\xf075f </fn>"
                         , "--on", ""
                         , "--onc", "white"
                         , "--offc", "white"
@@ -73,7 +73,7 @@ config =
                     , Run $ Memory ["--template", "Mem: <usedratio>%"] 10
                     --, Run Swap [] 10
                     --, Run $ Date "<fc=#8be9fd><fn=2>\xf073 </fn> %a %Y-%m-%d <fn=2>\xf017 </fn>%H:%M</fc>" "date" 10
-                    , Run $ Date "<fc=#FFC135><fn=2>\xf073 </fn> %a %Y-%m-%d <fn=2>\xf017 </fn>%H:%M</fc>" "date" 10
+                    , Run $ Date "<fc=#FFC135><fn=1>\xf073 </fn> %a %Y-%m-%d <fn=1>\xf017 </fn>%H:%M</fc>" "date" 10
                     , Run XMonadLog
                     ],
        sepChar  = "%",
