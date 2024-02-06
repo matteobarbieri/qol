@@ -35,7 +35,6 @@ myConfig = def
     , terminal = "xfce4-terminal"
     --, layoutHook = myLayout  -- Use custom layouts
     , startupHook = myStartupHook
-    --, focusedBorderColor = "#C3D82C"
     , focusedBorderColor = mycolor_green
     , borderWidth = 2
     }
@@ -73,6 +72,7 @@ myXmobarPP = def
     { ppSep             = magenta " • "
     , ppTitleSanitize   = xmobarStrip
     , ppCurrent         = wrap " " "" . xmobarBorder "Top" "#8be9fd" 2
+    , ppVisible         = wrap " " "" . xmobarBorder "Bottom" "#ff5555" 2
     , ppHidden          = white . wrap " " ""
     , ppHiddenNoWindows = lowWhite . wrap " " ""
     , ppUrgent          = red . wrap (yellow "!") (yellow "!")
