@@ -4,13 +4,17 @@
 
 setup_xmobar()
 {
-    # TODO remove this
-    ls > /dev/null
+    # TODO must be checked
+    sudo apt install cabal-install
+
+    cabal update
+    cabal install --lib xmobar -fall_extensions
+
+    echo "Complete the installation by moving xmobar binary"
+    echo "to .local/bin folder"
 
     # xmobar installation command: 
     # cabal install --lib xmobar --flags="with_xft with_alsa"
-
-
 }
 
 setup_xmonad()
@@ -19,6 +23,7 @@ setup_xmonad()
     $SUDO apt install -y \
         haskell-stack \
         libx11-dev libxft-dev libxinerama-dev libxrandr-dev libxss-dev \
+        trayer \
         libasound2-dev
 
     # Upgrade stack
@@ -42,5 +47,5 @@ setup_xmonad()
     # Link dotfiles
     ln -s ${SCRIPTPATH}/dotfiles/xmonad/xmonad.hs ~/.config/xmonad/xmonad.hs
 
-    setup_xmobar
+     setup_xmobar
 }
