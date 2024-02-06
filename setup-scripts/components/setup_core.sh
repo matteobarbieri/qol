@@ -19,8 +19,10 @@ setup_core()
   git \
   tmux \
   htop \
-  picom \ # compositor
-  suckless-tools \ # dmenu, slock and some more
+  picom \
+  keepassxc \
+  feh \
+  suckless-tools \
   wget \
   unzip \
   openssh-server \
@@ -30,6 +32,9 @@ setup_core()
 
   BAT_VERSION=0.24.0
   FD_VERSION=9.0.0
+
+  $SUDO snap install \
+      slack
 
   # Install tmux plugin manager
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
