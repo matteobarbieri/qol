@@ -20,6 +20,7 @@ setup_core()
   tmux \
   htop \
   picom \
+  xclip \
   keepassxc \
   feh \
   suckless-tools \
