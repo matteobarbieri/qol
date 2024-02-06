@@ -33,7 +33,7 @@ config =
         overrideRedirect = False,
         bgColor  = my_bgcolor,
         fgColor  = my_fgcolor,
-        position = TopSize L 90 26,
+        position = TopSize L 100 26,
         allDesktops = True,
         commands = [ 
                     Run $ Weather "EGPF"
@@ -45,10 +45,11 @@ config =
                         , "--high"  , "red"
                         ] 36000
                     , Run $ Cpu
-                        [ "-L", "3"
-                        , "-H", "50"
+                        [ "-L", "50"
+                        , "-H", "75"
                         , "--high"  , "red"
-                        , "--normal", "green"
+                        , "--normal", "white"
+                        , "--template", "\xf4bc  <total>%"
                         ] 10
                     , Run $ Kbd [
                         ("us", "\xf097b US")
@@ -78,7 +79,7 @@ config =
                     ],
        sepChar  = "%",
        alpha = 200,
-       template = "%XMonadLog% }{ %alsa:default:Master% | %kbd% |  %date% ",
+       template = "%XMonadLog% }{ | %alsa:default:Master% | %cpu% | %kbd% |  %date% ",
         alignSep = "}{"
       }
 
