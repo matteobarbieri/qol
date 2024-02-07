@@ -23,6 +23,8 @@ setup_core()
   xclip \
   keepassxc \
   feh \
+  redshift \
+  scrot \
   suckless-tools \
   wget \
   unzip \
