@@ -64,6 +64,7 @@ myStartupHook = do
             \--transparent true --tint 0x5f5f5f \
             \--monitor primary &"
   spawnOnce "picom &"
+  spawnOnce "dropbox start"
   spawnOnce "setxkbmap -layout us,it,se -option 'grp:alt_shift_toggle'"
   spawnOnce "feh --bg-fill --no-fehbg ~/.wallpapers/rubix-cube-creativity-2560x1440-v0-7lnsnj1104391.jpg"
 
