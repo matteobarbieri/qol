@@ -57,16 +57,17 @@ config =
                         , ("it", "\xf097b IT")
                     ]
                     -- https://codeberg.org/xmobar/xmobar/src/branch/master/doc/plugins.org#user-content-volume
-                    , Run $ Alsa "default" "Master"
+                    -- , Run $ Alsa "default" "Master"
+                    , Run $ Alsa "hw:6" "PCM"
                         [ 
                           --"--template", "<status>"
                           "--template", "<volumestatus>"
                         , "--suffix"  , "True"
                         , "--"
-                        , "-l", "<fn=1>\xf057f </fn>"
-                        , "-m", "<fn=1>\xf0580 </fn>"
-                        , "-h", "<fn=1>\xf057e </fn>"
-                        , "--off", "<fn=1>\xf075f </fn>"
+                        , "-l", "\xf057f "
+                        , "-m", "\xf0580 "
+                        , "-h", "\xf057e "
+                        , "--off", "\xf075f "
                         , "--on", ""
                         , "--onc", "white"
                         , "--offc", "white"
@@ -79,7 +80,8 @@ config =
                     ],
        sepChar  = "%",
        alpha = 200,
-       template = "%XMonadLog% }{ | %alsa:default:Master% | %cpu% | %kbd% |  %date% ",
+      --  template = "%XMonadLog% }{ | %alsa:default:Master% | %cpu% | %kbd% |  %date% ",
+       template = "%XMonadLog% }{ | %alsa:hw:6:PCM% | %cpu% | %kbd% |  %date% ",
         alignSep = "}{"
       }
 

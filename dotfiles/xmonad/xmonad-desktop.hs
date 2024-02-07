@@ -48,11 +48,11 @@ myKeys =
     , ("M-e"  , spawn "thunar"                   )
     , ("M-S-b"  , spawn "google-chrome"                   ) -- to change
     , ("M-g", goToSelected gsconfig1)
-    , ("<XF86MonBrightnessUp>", spawn "lux -a 10%")
-    , ("<XF86MonBrightnessDown>", spawn "lux -s 10%")
-    , ("<XF86AudioLowerVolume>", spawn "amixer -q sset Master 2%-")
-    , ("<XF86AudioRaiseVolume>", spawn "amixer -q sset Master 2%+")
-    , ("<XF86AudioMute>", spawn "amixer -D pulse set Master toggle")
+    -- , ("<XF86MonBrightnessUp>", spawn "lux -a 10%")
+    -- , ("<XF86MonBrightnessDown>", spawn "lux -s 10%")
+    , ("<XF86AudioLowerVolume>", spawn "amixer -c 6 -q sset PCM 2%-")
+    , ("<XF86AudioRaiseVolume>", spawn "amixer -c 6 -q sset PCM 2%+")
+    , ("<XF86AudioMute>", spawn "amixer -c 6 set PCM toggle")
 
     ]
 
@@ -64,6 +64,7 @@ myStartupHook = do
             \--distancefrom right --distance 560 \
             \--monitor primary &"
   spawnOnce "picom &"
+  spawnOnce "dropbox start"
   spawnOnce "setxkbmap -layout us,it,se -option 'grp:alt_shift_toggle'"
   spawnOnce "feh --bg-fill --no-fehbg ~/.wallpapers/rubix-cube-creativity-2560x1440-v0-7lnsnj1104391.jpg"
 
