@@ -1,7 +1,7 @@
 import Xmobar
 
 my_bgcolor, my_fgcolor :: String
-my_bgcolor =  "#5f5f5f"
+my_bgcolor =  "#4f4f4f"
 my_fgcolor =  "#f8f8f2"
 
 my_coloryellow :: String
@@ -92,7 +92,7 @@ config =
                     , Run XMonadLog
                     ],
        sepChar  = "%",
-       alpha = 200,
+       alpha = 255,
        template = "%XMonadLog% }{ %alsa:default:Master% | %battery% | %kbd% |  %date% ",
         alignSep = "}{"
       }

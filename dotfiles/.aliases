@@ -24,3 +24,4 @@ alias vv='view'
 
 # Add alias for kubectl
 alias k='kubectl'
+alias p='poetry'

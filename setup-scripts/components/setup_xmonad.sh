@@ -13,6 +13,12 @@ setup_xmobar()
     echo "Complete the installation by moving xmobar binary"
     echo "to .local/bin folder"
 
+    # Link configuration
+    mkdir -p ~/.config/xmobar
+
+    # TODO add flag to choose whether it's a laptop or desktop installation
+
+    #ln -s ${SCRIPTPATH}/dotfiles/xmonad/xmonad.hs ~/.config/xmonad/xmonad.hs
     # xmobar installation command: 
     # cabal install --lib xmobar --flags="with_xft with_alsa"
 }
@@ -23,7 +29,7 @@ setup_xmonad()
     $SUDO apt install -y \
         haskell-stack \
         libx11-dev libxft-dev libxinerama-dev libxrandr-dev libxss-dev \
-        trayer \
+        stalonetray \
         libasound2-dev
 
     # Upgrade stack
@@ -47,5 +53,8 @@ setup_xmonad()
     # Link dotfiles
     ln -s ${SCRIPTPATH}/dotfiles/xmonad/xmonad.hs ~/.config/xmonad/xmonad.hs
 
-     setup_xmobar
+    # stalonetray config
+    ln -s ${SCRIPTPATH}/dotfiles/.stalonetrayrc ~/.stalonetrayrc
+
+    setup_xmobar
 }
