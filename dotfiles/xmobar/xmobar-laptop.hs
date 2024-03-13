@@ -31,7 +31,7 @@ config =
         overrideRedirect = False,
         bgColor  = my_bgcolor,
         fgColor  = my_fgcolor,
-        position = TopW L 90,
+        position = TopW L 100,
         allDesktops = True,
         commands = [ 
                     Run $ Weather "EGPF"
