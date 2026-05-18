@@ -109,6 +109,9 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# This should stay at the end
+[ -f ~/.aliases ] && source ~/.aliases
+
 export BAT_THEME="Monokai Extended"
 
 eval "$(starship init zsh)"
