@@ -31,11 +31,8 @@ Plugin 'L9'
 " different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 
-" Porting of the monomak theme for vim
-Plugin 'molokai'
-
 " Autocomplete engine, might require additional config
-Plugin 'valloric/youcompleteme'
+" Plugin 'valloric/youcompleteme'
 
 " Plugin to surround text
 Plugin 'tpope/vim-surround'
@@ -53,7 +50,6 @@ Plugin 'vim-airline/vim-airline-themes'
 " Another color theme
 Plugin 'nanotech/jellybeans.vim'
 
-"Plugin 'sickill/vim-monokai'
 Plugin 'crusoexia/vim-monokai'
 
 " Search any file
@@ -79,10 +75,10 @@ Plugin 'majutsushi/tagbar'
 "Plugin 'nvie/vim-flake8'
 
 " Track the engine.
-Plugin 'SirVer/ultisnips'
+" Plugin 'SirVer/ultisnips'
 
 " Snippets are separated from the engine. Add this if you want them:
-Plugin 'honza/vim-snippets'
+" Plugin 'honza/vim-snippets'
 
 " Alternative cpp highlighting
 Plugin 'octol/vim-cpp-enhanced-highlight'
