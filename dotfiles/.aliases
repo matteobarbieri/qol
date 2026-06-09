@@ -25,3 +25,9 @@ alias vv='view'
 # Add alias for kubectl
 alias k='kubectl'
 alias p='poetry'
+alias c='claude'
+alias tf='terraform'
+
+# This should stay at the end
+[ -f ~/.aliases.local ] && source ~/.aliases.local
+
