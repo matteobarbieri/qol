@@ -18,6 +18,8 @@ alias .a='conda activate'
 alias v='vim'
 alias vv='view'
 
+alias t='tmux'
+
 # Snippet for smart choosing conda environment to activate
 # .a $(conda env list | cut -f 1 -d ' ' | fzf)
 [ -f ~/.aliases.local ] && source ~/.aliases.local
