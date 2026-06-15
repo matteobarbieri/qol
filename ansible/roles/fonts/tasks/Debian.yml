@@ -1,0 +1,36 @@
+---
+- name: Install font tooling (apt)
+  ansible.builtin.apt:
+    name:
+      - unzip
+      - fontconfig
+    state: present
+  become: true
+
+- name: Ensure local fonts directory exists
+  ansible.builtin.file:
+    path: "{{ home_dir }}/.local/share/fonts"
+    state: directory
+    mode: "0755"
+
+- name: Download Nerd Fonts archives
+  ansible.builtin.get_url:
+    url: "https://github.com/ryanoasis/nerd-fonts/releases/download/{{ nerd_fonts_version }}/{{ item }}.zip"
+    dest: "/tmp/nerd-font-{{ item }}.zip"
+    mode: "0644"
+  loop: "{{ nerd_fonts }}"
+
+- name: Extract Nerd Fonts into local fonts directory
+  ansible.builtin.unarchive:
+    src: "/tmp/nerd-font-{{ item }}.zip"
+    dest: "{{ home_dir }}/.local/share/fonts"
+    remote_src: true
+    include:
+      - "*.ttf"
+      - "*.otf"
+  loop: "{{ nerd_fonts }}"
+
+- name: Rebuild font cache
+  ansible.builtin.command:
+    cmd: fc-cache -f
+  changed_when: true

@@ -1,0 +1,5 @@
+# Ansible Galaxy dependencies. Installed by bootstrap.sh via:
+#   ansible-galaxy collection install -r ansible/requirements.yml
+collections:
+  - name: community.general   # homebrew, homebrew_cask, snap, etc.
+    version: ">=8.0.0"

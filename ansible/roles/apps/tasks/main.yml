@@ -1,0 +1,9 @@
+---
+- name: Install GUI apps (OS-specific)
+  ansible.builtin.include_tasks: "{{ ansible_facts['os_family'] }}.yml"
+
+# Claude Code — official installer, user-level, lands in ~/.local/bin.
+- name: Install Claude Code
+  ansible.builtin.shell:
+    cmd: curl -fsSL https://claude.ai/install.sh | bash
+    creates: "{{ home_dir }}/.local/bin/claude"

@@ -1,0 +1,41 @@
+---
+- name: Install zsh package (OS-specific)
+  ansible.builtin.include_tasks: "{{ ansible_facts['os_family'] }}.yml"
+
+- name: Install oh-my-zsh (unattended)
+  ansible.builtin.shell:
+    cmd: >-
+      sh -c "$(curl -fsSL
+      https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+      "" --unattended
+    creates: "{{ home_dir }}/.oh-my-zsh"
+
+- name: Clone oh-my-zsh custom plugins
+  ansible.builtin.git:
+    repo: "{{ item.repo }}"
+    dest: "{{ home_dir }}/.oh-my-zsh/custom/plugins/{{ item.name }}"
+    depth: 1
+    version: master
+  loop:
+    - { name: zsh-syntax-highlighting, repo: "https://github.com/zsh-users/zsh-syntax-highlighting.git" }
+    - { name: zsh-autosuggestions, repo: "https://github.com/zsh-users/zsh-autosuggestions.git" }
+  loop_control:
+    label: "{{ item.name }}"
+
+- name: Stat existing ~/.zshrc
+  ansible.builtin.stat:
+    path: "{{ home_dir }}/.zshrc"
+  register: zshrc_stat
+
+- name: Back up existing real ~/.zshrc (oh-my-zsh writes one)
+  ansible.builtin.command:
+    cmd: "mv {{ home_dir }}/.zshrc {{ home_dir }}/.zshrc.pre-ansible"
+    creates: "{{ home_dir }}/.zshrc.pre-ansible"
+  when: zshrc_stat.stat.exists and not zshrc_stat.stat.islnk
+
+- name: Symlink ~/.zshrc
+  ansible.builtin.file:
+    src: "{{ dotfiles_dir }}/zsh/.zshrc"
+    dest: "{{ home_dir }}/.zshrc"
+    state: link
+    force: true

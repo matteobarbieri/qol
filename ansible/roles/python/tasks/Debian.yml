@@ -1,0 +1,7 @@
+---
+# uv is not in the apt repos; use the official installer (user-level, no sudo).
+# Lands in ~/.local/bin, which the managed .zshrc puts on PATH.
+- name: Install uv
+  ansible.builtin.shell:
+    cmd: curl -LsSf https://astral.sh/uv/install.sh | sh
+    creates: "{{ home_dir }}/.local/bin/uv"

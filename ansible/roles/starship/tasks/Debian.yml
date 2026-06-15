@@ -1,0 +1,13 @@
+---
+# starship isn't in the apt repos; use the official installer into /usr/local/bin.
+- name: Download starship installer
+  ansible.builtin.get_url:
+    url: https://starship.rs/install.sh
+    dest: /tmp/install_starship.sh
+    mode: "0755"
+
+- name: Install starship
+  ansible.builtin.command:
+    cmd: /tmp/install_starship.sh -y -b /usr/local/bin
+    creates: /usr/local/bin/starship
+  become: true

@@ -1,0 +1,31 @@
+---
+# Main playbook. Configures the local machine (mac or Debian/Ubuntu).
+#
+#   Everything:       ansible-playbook site.yml
+#   Subset by tag:    ansible-playbook site.yml --tags zsh,vim
+#   Skip a component: ansible-playbook site.yml --skip-tags docker,apps
+#
+# Normally invoked through ../bootstrap.sh, which also handles sudo detection.
+- name: Set up local machine
+  hosts: local
+  gather_facts: true
+
+  pre_tasks:
+    - name: Fail on unsupported OS
+      ansible.builtin.fail:
+        msg: >-
+          Unsupported OS family '{{ ansible_facts['os_family'] }}'.
+          This playbook supports macOS (Darwin) and Debian/Ubuntu.
+      when: ansible_facts['os_family'] not in ['Darwin', 'Debian']
+
+  roles:
+    - { role: core,     tags: ['core'] }
+    - { role: dotfiles, tags: ['dotfiles'] }
+    - { role: zsh,      tags: ['zsh', 'shell'] }
+    - { role: starship, tags: ['starship', 'shell'] }
+    - { role: tmux,     tags: ['tmux'] }
+    - { role: vim,      tags: ['vim'] }
+    - { role: fonts,    tags: ['fonts'] }
+    - { role: python,   tags: ['python'] }
+    - { role: docker,   tags: ['docker'] }
+    - { role: apps,     tags: ['apps'] }

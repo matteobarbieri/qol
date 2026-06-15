@@ -1,0 +1,35 @@
+---
+- name: Install vim (OS-specific)
+  ansible.builtin.include_tasks: "{{ ansible_facts['os_family'] }}.yml"
+
+- name: Install Vundle plugin manager
+  ansible.builtin.git:
+    repo: https://github.com/VundleVim/Vundle.vim.git
+    dest: "{{ home_dir }}/.vim/bundle/Vundle.vim"
+    depth: 1
+    version: master
+
+- name: Stat existing ~/.vimrc
+  ansible.builtin.stat:
+    path: "{{ home_dir }}/.vimrc"
+  register: vimrc_stat
+
+- name: Back up existing real ~/.vimrc
+  ansible.builtin.command:
+    cmd: "mv {{ home_dir }}/.vimrc {{ home_dir }}/.vimrc.pre-ansible"
+    creates: "{{ home_dir }}/.vimrc.pre-ansible"
+  when: vimrc_stat.stat.exists and not vimrc_stat.stat.islnk
+
+- name: Symlink ~/.vimrc
+  ansible.builtin.file:
+    src: "{{ dotfiles_dir }}/vim/.vimrc"
+    dest: "{{ home_dir }}/.vimrc"
+    state: link
+    force: true
+
+- name: Install vim plugins (Vundle, headless)
+  ansible.builtin.command:
+    cmd: vim +PluginInstall +qall
+    creates: "{{ home_dir }}/.vim/bundle/vim-fugitive"
+  environment:
+    TERM: xterm

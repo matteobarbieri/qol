@@ -1,0 +1,8 @@
+---
+- name: Install vim and ctags (apt)
+  ansible.builtin.apt:
+    name:
+      - vim
+      - exuberant-ctags
+    state: present
+  become: true

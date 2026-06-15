@@ -1,0 +1,5 @@
+---
+- name: Install Docker Desktop (Homebrew cask)
+  community.general.homebrew_cask:
+    name: docker-desktop
+    state: present

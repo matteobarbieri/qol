@@ -1,0 +1,28 @@
+---
+- name: Install tmux (OS-specific)
+  ansible.builtin.include_tasks: "{{ ansible_facts['os_family'] }}.yml"
+
+- name: Install tmux plugin manager (tpm)
+  ansible.builtin.git:
+    repo: https://github.com/tmux-plugins/tpm.git
+    dest: "{{ home_dir }}/.tmux/plugins/tpm"
+    depth: 1
+    version: master
+
+- name: Stat existing ~/.tmux.conf
+  ansible.builtin.stat:
+    path: "{{ home_dir }}/.tmux.conf"
+  register: tmux_conf_stat
+
+- name: Back up existing real ~/.tmux.conf
+  ansible.builtin.command:
+    cmd: "mv {{ home_dir }}/.tmux.conf {{ home_dir }}/.tmux.conf.pre-ansible"
+    creates: "{{ home_dir }}/.tmux.conf.pre-ansible"
+  when: tmux_conf_stat.stat.exists and not tmux_conf_stat.stat.islnk
+
+- name: Symlink ~/.tmux.conf
+  ansible.builtin.file:
+    src: "{{ dotfiles_dir }}/.tmux.conf"
+    dest: "{{ home_dir }}/.tmux.conf"
+    state: link
+    force: true

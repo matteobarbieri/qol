@@ -1,0 +1,17 @@
+---
+- name: Install zsh (apt)
+  ansible.builtin.apt:
+    name: zsh
+    state: present
+  become: true
+
+- name: Locate zsh binary
+  ansible.builtin.command: which zsh
+  register: zsh_path
+  changed_when: false
+
+- name: Set zsh as the default login shell
+  ansible.builtin.user:
+    name: "{{ ansible_facts['user_id'] }}"
+    shell: "{{ zsh_path.stdout }}"
+  become: true

@@ -6,3 +6,8 @@
     st = status
     ci = commit
     co = checkout
+
+# Machine-specific overrides (not version-controlled). Keep this at the very end;
+# git ignores the include if the file does not exist.
+[include]
+    path = ~/.gitconfig.local

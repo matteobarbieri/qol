@@ -1,0 +1,35 @@
+---
+- name: Stat existing dotfile targets
+  ansible.builtin.stat:
+    path: "{{ home_dir }}/{{ item.dest }}"
+  loop: "{{ dotfile_links }}"
+  loop_control:
+    label: "{{ item.dest }}"
+  register: dotfile_stats
+
+- name: Back up existing real files (leave symlinks alone)
+  ansible.builtin.command:
+    cmd: "mv {{ home_dir }}/{{ item.item.dest }} {{ home_dir }}/{{ item.item.dest }}.pre-ansible"
+    creates: "{{ home_dir }}/{{ item.item.dest }}.pre-ansible"
+  loop: "{{ dotfile_stats.results }}"
+  loop_control:
+    label: "{{ item.item.dest }}"
+  when: item.stat.exists and not item.stat.islnk
+
+- name: Symlink generic dotfiles
+  ansible.builtin.file:
+    src: "{{ dotfiles_dir }}/{{ item.src }}"
+    dest: "{{ home_dir }}/{{ item.dest }}"
+    state: link
+    force: true
+  loop: "{{ dotfile_links }}"
+  loop_control:
+    label: "{{ item.dest }}"
+
+- name: Create empty local override files if missing
+  ansible.builtin.copy:
+    content: ""
+    dest: "{{ home_dir }}/{{ item }}"
+    force: false
+    mode: "0644"
+  loop: "{{ local_override_files }}"

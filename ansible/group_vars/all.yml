@@ -1,0 +1,13 @@
+---
+# Absolute path to the dotfiles/ directory in this repo. Computed from the
+# playbook location so the repo can live anywhere (we recommend ~/repos/qol).
+dotfiles_dir: "{{ playbook_dir }}/../dotfiles"
+
+# Home directory of the user running the playbook (never root — dotfiles are
+# always linked into the invoking user's home).
+home_dir: "{{ ansible_facts['user_dir'] }}"
+
+# Nerd Fonts to install (see fonts role).
+nerd_fonts:
+  - Hack
+  - Mononoki

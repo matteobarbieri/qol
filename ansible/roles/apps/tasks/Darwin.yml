@@ -1,0 +1,8 @@
+---
+- name: Install GUI apps (Homebrew casks)
+  community.general.homebrew_cask:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - visual-studio-code
+    - dropbox

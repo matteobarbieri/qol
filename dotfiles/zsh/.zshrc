@@ -1,6 +1,9 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
+# Ensure user-local binaries (uv, claude, fd/bat shims on Debian, etc.) are on PATH
+export PATH="$HOME/.local/bin:$PATH"
+
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -115,3 +118,6 @@ source $ZSH/oh-my-zsh.sh
 export BAT_THEME="Monokai Extended"
 
 eval "$(starship init zsh)"
+
+# Machine-specific overrides (not version-controlled). Keep this at the very end.
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
