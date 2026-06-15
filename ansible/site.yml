@@ -22,9 +22,6 @@
     ansible.builtin.apt:
       lock_timeout: 300
 
-  # pre_tasks are tagged 'always' so they still run when the playbook is invoked
-  # with --tags (e.g. bootstrap.sh --tags server); otherwise tag filtering would
-  # skip them and the lock wait below would never happen.
   pre_tasks:
     - name: Fail on unsupported OS
       ansible.builtin.fail:
@@ -32,7 +29,6 @@
           Unsupported OS family '{{ ansible_facts['os_family'] }}'.
           This playbook supports macOS (Darwin) and Debian/Ubuntu.
       when: ansible_facts['os_family'] not in ['Darwin', 'Debian']
-      tags: [always]
 
     - name: Wait for boot-time apt/dpkg locks to be released
       ansible.builtin.shell: >-
@@ -46,7 +42,6 @@
       until: apt_lock_check.rc != 0
       become: true
       when: ansible_facts['os_family'] == 'Debian'
-      tags: [always]
 
   roles:
     - { role: core,     tags: ['core', 'server'] }
