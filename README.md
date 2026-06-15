@@ -19,6 +19,11 @@ and links my dotfiles into place. Works on **macOS** (Homebrew) and
 | `docker` | Docker Desktop (mac) / Docker engine (linux) |
 | `apps` | VS Code, Dropbox, Claude Code |
 
+The `server` meta-tag selects every component above **except** `apps` and
+`fonts` (the desktop-only ones), so a headless machine can be provisioned in one
+go with `--tags server`. The `shell` tag is a similar shortcut for `zsh` +
+`starship`.
+
 ## Requirements on the target machine
 
 - **Internet access.**
@@ -58,8 +63,17 @@ component is exposed as a tag:
 ```bash
 ./bootstrap.sh --tags zsh,vim        # only those components
 ./bootstrap.sh --tags shell          # zsh + starship
+./bootstrap.sh --tags server         # everything except apps + fonts
 ./bootstrap.sh --skip-tags docker,apps
 ./bootstrap.sh -K                    # force the sudo password prompt
+```
+
+Two informational flags print and exit without touching the system (handy on a
+fresh machine, before any prerequisites are installed):
+
+```bash
+./bootstrap.sh --list                # list installable components and their tags
+./bootstrap.sh --help                # show usage
 ```
 
 Re-running is safe — the playbook is idempotent. Run it again any time to add a
