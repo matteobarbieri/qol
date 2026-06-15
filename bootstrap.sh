@@ -17,6 +17,28 @@ ANSIBLE_DIR="${SCRIPT_DIR}/ansible"
 log() { printf '\033[1;32m==>\033[0m %s\n' "$*"; }
 err() { printf '\033[1;31mERROR:\033[0m %s\n' "$*" >&2; }
 
+usage() {
+  cat <<'EOF'
+qol bootstrap — set up a fresh machine with Ansible.
+
+Usage:
+  ./bootstrap.sh                       # install/configure everything
+  ./bootstrap.sh --tags zsh,vim        # only selected components
+  ./bootstrap.sh --skip-tags docker    # everything except some
+  ./bootstrap.sh -K                    # force the sudo password prompt
+  ./bootstrap.sh -h, --help            # show this help and exit
+
+Any extra arguments are passed straight through to ansible-playbook.
+EOF
+}
+
+# Show help before doing any installation work.
+for arg in "$@"; do
+  case "$arg" in
+    -h|--help) usage; exit 0 ;;
+  esac
+done
+
 # --------------------------------------------------------------------------
 # OS-specific prelude: ensure a package manager + Ansible are present.
 # --------------------------------------------------------------------------
