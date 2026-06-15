@@ -34,16 +34,25 @@
       when: ansible_facts['os_family'] not in ['Darwin', 'Debian']
       tags: [always]
 
-    - name: Wait for boot-time apt/dpkg locks to be released
-      ansible.builtin.shell: >-
-        fuser /var/lib/dpkg/lock-frontend /var/lib/dpkg/lock
-        /var/lib/apt/lists/lock /var/cache/apt/archives/lock 2>/dev/null
-      register: apt_lock_check
+    # Detect the lock holders by process rather than by the lock files: `fuser`
+    # (psmisc) is missing on minimal cloud images, whereas `pgrep` (procps) is an
+    # essential package and always present. The task retries while any apt/dpkg
+    # process is running and fails loudly if it never clears (e.g. a wedged dpkg
+    # needing `dpkg --configure -a`) instead of falling through into the apt task.
+    - name: Wait for boot-time apt/dpkg activity to finish
+      ansible.builtin.shell: |
+        if pgrep -x dpkg >/dev/null || pgrep -x apt >/dev/null \
+           || pgrep -x apt-get >/dev/null || pgrep -f unattended-upgr >/dev/null; then
+          exit 1   # still busy
+        fi
+        exit 0     # lock holders gone
+      args:
+        executable: /bin/bash
+      register: apt_busy
       changed_when: false
-      failed_when: false
-      retries: 30
+      retries: 60
       delay: 10
-      until: apt_lock_check.rc != 0
+      until: apt_busy.rc == 0
       become: true
       when: ansible_facts['os_family'] == 'Debian'
       tags: [always]
