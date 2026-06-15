@@ -14,14 +14,6 @@
   hosts: local
   gather_facts: true
 
-  # On a fresh Debian/Ubuntu host the boot-time apt-daily / unattended-upgrades
-  # timers grab the dpkg lock, so any apt task that runs first fails with
-  # "Unable to acquire the dpkg frontend lock". Give every apt call a generous
-  # lock_timeout as a backstop; the pre_task below waits the initial lock out.
-  module_defaults:
-    ansible.builtin.apt:
-      lock_timeout: 300
-
   pre_tasks:
     - name: Fail on unsupported OS
       ansible.builtin.fail:
@@ -29,19 +21,6 @@
           Unsupported OS family '{{ ansible_facts['os_family'] }}'.
           This playbook supports macOS (Darwin) and Debian/Ubuntu.
       when: ansible_facts['os_family'] not in ['Darwin', 'Debian']
-
-    - name: Wait for boot-time apt/dpkg locks to be released
-      ansible.builtin.shell: >-
-        fuser /var/lib/dpkg/lock-frontend /var/lib/dpkg/lock
-        /var/lib/apt/lists/lock /var/cache/apt/archives/lock 2>/dev/null
-      register: apt_lock_check
-      changed_when: false
-      failed_when: false
-      retries: 30
-      delay: 10
-      until: apt_lock_check.rc != 0
-      become: true
-      when: ansible_facts['os_family'] == 'Debian'
 
   roles:
     - { role: core,     tags: ['core', 'server'] }
