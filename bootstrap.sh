@@ -7,6 +7,7 @@
 #   ./bootstrap.sh --tags zsh,vim        # only selected components
 #   ./bootstrap.sh --skip-tags docker    # everything except some
 #   ./bootstrap.sh -K                    # force the sudo password prompt
+#   ./bootstrap.sh --list                # list installable components and exit
 #
 # Any extra arguments are passed straight through to ansible-playbook.
 set -euo pipefail
@@ -26,16 +27,33 @@ Usage:
   ./bootstrap.sh --tags zsh,vim        # only selected components
   ./bootstrap.sh --skip-tags docker    # everything except some
   ./bootstrap.sh -K                    # force the sudo password prompt
+  ./bootstrap.sh --list                # list installable components and exit
   ./bootstrap.sh -h, --help            # show this help and exit
 
 Any extra arguments are passed straight through to ansible-playbook.
 EOF
 }
 
-# Show help before doing any installation work.
+# Print the installable components (Ansible roles and their tags), parsed
+# straight from site.yml so this list never drifts from the playbook.
+list_components() {
+  echo "Components installed by default (pass these tags to --tags / --skip-tags):"
+  echo
+  awk '
+    /role:/ {
+      role = $0; sub(/.*role: */, "", role); sub(/,.*/, "", role)
+      tags = $0; sub(/.*tags: *\[/, "", tags); sub(/\].*/, "", tags)
+      gsub(/'\''/, "", tags); gsub(/ /, "", tags); gsub(/,/, ", ", tags)
+      printf "  %-10s (tags: %s)\n", role, tags
+    }
+  ' "${ANSIBLE_DIR}/site.yml"
+}
+
+# Handle informational flags before doing any installation work.
 for arg in "$@"; do
   case "$arg" in
     -h|--help) usage; exit 0 ;;
+    --list)    list_components; exit 0 ;;
   esac
 done
 
