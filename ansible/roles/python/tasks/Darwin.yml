@@ -1,0 +1,5 @@
+---
+- name: Install uv (Homebrew)
+  community.general.homebrew:
+    name: uv
+    state: present

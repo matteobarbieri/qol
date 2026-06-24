@@ -1,0 +1,50 @@
+---
+# --- VS Code (official Microsoft apt repo) --------------------------------
+- name: Install apt prerequisites
+  ansible.builtin.apt:
+    name:
+      - apt-transport-https
+      - gpg
+      - python3-apt   # required by the apt_repository module
+    state: present
+  become: true
+
+- name: Ensure apt keyrings directory exists
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: "0755"
+  become: true
+
+- name: Add Microsoft signing key
+  ansible.builtin.get_url:
+    url: https://packages.microsoft.com/keys/microsoft.asc
+    dest: /etc/apt/keyrings/microsoft.asc
+    mode: "0644"
+  become: true
+
+- name: Add VS Code apt repository
+  ansible.builtin.apt_repository:
+    repo: "deb [arch=amd64,arm64 signed-by=/etc/apt/keyrings/microsoft.asc] https://packages.microsoft.com/repos/code stable main"
+    filename: vscode
+    state: present
+  become: true
+
+- name: Install VS Code (apt)
+  ansible.builtin.apt:
+    name: code
+    state: present
+    update_cache: true
+  become: true
+
+# --- Dropbox (official Linux daemon tarball) ------------------------------
+- name: Install Dropbox daemon
+  ansible.builtin.shell:
+    cmd: >-
+      wget -qO- "https://www.dropbox.com/download?plat=lnx.{{ ansible_facts['architecture'] }}"
+      | tar xzf - -C {{ home_dir }}
+    creates: "{{ home_dir }}/.dropbox-dist"
+
+- name: Note about starting Dropbox
+  ansible.builtin.debug:
+    msg: "Start Dropbox once with `~/.dropbox-dist/dropboxd` to link your account."

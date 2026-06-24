@@ -1,0 +1,24 @@
+---
+# Use Docker's official convenience script to install the engine + CLI.
+- name: Download docker install script
+  ansible.builtin.get_url:
+    url: https://get.docker.com
+    dest: /tmp/get-docker.sh
+    mode: "0755"
+
+- name: Install docker engine
+  ansible.builtin.command:
+    cmd: sh /tmp/get-docker.sh
+    creates: /usr/bin/docker
+  become: true
+
+- name: Add user to the docker group (run docker without sudo)
+  ansible.builtin.user:
+    name: "{{ ansible_facts['user_id'] }}"
+    groups: docker
+    append: true
+  become: true
+
+- name: Note about docker group membership
+  ansible.builtin.debug:
+    msg: "Log out and back in (or run `newgrp docker`) for docker group membership to take effect."

@@ -1,0 +1,17 @@
+---
+# Generic dotfiles linked by this role. Component-specific dotfiles (.zshrc,
+# starship.toml, .tmux.conf, .vimrc) are linked by their own roles so they
+# follow the matching --tags.
+dotfile_links:
+  - { src: ".aliases", dest: ".aliases" }
+  - { src: ".gitconfig", dest: ".gitconfig" }
+
+# Unversioned, machine-specific override files. Each versioned dotfile sources
+# its companion at the very end, so local tweaks never touch tracked files.
+# Created empty here if absent (never overwritten).
+local_override_files:
+  - .aliases.local
+  - .zshrc.local
+  - .vimrc.local
+  - .tmux.conf.local
+  - .gitconfig.local

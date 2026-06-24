@@ -1,0 +1,41 @@
+---
+# --- miniconda (cross-platform via the official installer) ---------------
+- name: Determine miniconda installer filename
+  ansible.builtin.set_fact:
+    miniconda_installer: "Miniconda3-latest-{{ mc_os }}-{{ ansible_facts['architecture'] }}.sh"
+  vars:
+    mc_os: "{{ 'MacOSX' if ansible_facts['system'] == 'Darwin' else 'Linux' }}"
+
+- name: Download miniconda installer
+  ansible.builtin.get_url:
+    url: "https://repo.anaconda.com/miniconda/{{ miniconda_installer }}"
+    dest: "/tmp/{{ miniconda_installer }}"
+    mode: "0755"
+
+- name: Install miniconda
+  ansible.builtin.command:
+    cmd: "bash /tmp/{{ miniconda_installer }} -b -p {{ conda_prefix }}"
+    creates: "{{ conda_prefix }}"
+
+# conda init normally edits ~/.zshrc, but that's a symlink into this repo.
+# Write the initialize block into the unversioned ~/.zshrc.local instead.
+- name: Add conda initialization to ~/.zshrc.local
+  ansible.builtin.blockinfile:
+    path: "{{ home_dir }}/.zshrc.local"
+    create: true
+    mode: "0644"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - conda"
+    block: |
+      __conda_setup="$('{{ conda_prefix }}/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+      if [ $? -eq 0 ]; then
+          eval "$__conda_setup"
+      elif [ -f "{{ conda_prefix }}/etc/profile.d/conda.sh" ]; then
+          . "{{ conda_prefix }}/etc/profile.d/conda.sh"
+      else
+          export PATH="{{ conda_prefix }}/bin:$PATH"
+      fi
+      unset __conda_setup
+
+# --- uv -------------------------------------------------------------------
+- name: Install uv (OS-specific)
+  ansible.builtin.include_tasks: "{{ ansible_facts['os_family'] }}.yml"

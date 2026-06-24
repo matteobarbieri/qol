@@ -127,7 +127,9 @@ filetype plugin indent on    " required
 
 " Use molokai color scheme for the editor
 "colorscheme molokai
-colorscheme monokai
+" silent! so the first headless `vim +PluginInstall` doesn't error out
+" (E185) and block on ENTER before the colorscheme plugin is installed.
+silent! colorscheme monokai
 
 " Use molokai theme for the airline
 let g:airline_theme='powerlineish'
@@ -228,3 +230,8 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 map <c-x><c-f> :Ag<CR>
 
 set encoding=utf-8
+
+" Machine-specific overrides (not version-controlled). Keep this at the very end.
+if filereadable(expand("~/.vimrc.local"))
+    source ~/.vimrc.local
+endif

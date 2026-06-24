@@ -1,0 +1,7 @@
+---
+# macOS already ships zsh as the default login shell; install the Homebrew
+# build for an up-to-date version but don't bother with chsh.
+- name: Install zsh (Homebrew)
+  community.general.homebrew:
+    name: zsh
+    state: present

@@ -1,0 +1,5 @@
+---
+- name: Install starship (Homebrew)
+  community.general.homebrew:
+    name: starship
+    state: present

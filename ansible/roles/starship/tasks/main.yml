@@ -1,0 +1,27 @@
+---
+- name: Install starship (OS-specific)
+  ansible.builtin.include_tasks: "{{ ansible_facts['os_family'] }}.yml"
+
+- name: Ensure ~/.config exists
+  ansible.builtin.file:
+    path: "{{ home_dir }}/.config"
+    state: directory
+    mode: "0755"
+
+- name: Stat existing ~/.config/starship.toml
+  ansible.builtin.stat:
+    path: "{{ home_dir }}/.config/starship.toml"
+  register: starship_toml_stat
+
+- name: Back up existing real starship.toml
+  ansible.builtin.command:
+    cmd: "mv {{ home_dir }}/.config/starship.toml {{ home_dir }}/.config/starship.toml.pre-ansible"
+    creates: "{{ home_dir }}/.config/starship.toml.pre-ansible"
+  when: starship_toml_stat.stat.exists and not starship_toml_stat.stat.islnk
+
+- name: Symlink starship.toml
+  ansible.builtin.file:
+    src: "{{ dotfiles_dir }}/starship.toml"
+    dest: "{{ home_dir }}/.config/starship.toml"
+    state: link
+    force: true

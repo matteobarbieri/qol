@@ -1,0 +1,35 @@
+---
+# Main playbook. Configures the local machine (mac or Debian/Ubuntu).
+#
+#   Everything:       ansible-playbook site.yml
+#   Subset by tag:    ansible-playbook site.yml --tags zsh,vim
+#   Skip a component: ansible-playbook site.yml --skip-tags docker,apps
+#   Server preset:    ansible-playbook site.yml --tags server  # all but apps/fonts
+#
+# The 'server' tag is a meta-tag applied to every role that makes sense on a
+# headless machine (i.e. everything except apps/fonts, which are desktop-only).
+#
+# Normally invoked through ../bootstrap.sh, which also handles sudo detection.
+- name: Set up local machine
+  hosts: local
+  gather_facts: true
+
+  pre_tasks:
+    - name: Fail on unsupported OS
+      ansible.builtin.fail:
+        msg: >-
+          Unsupported OS family '{{ ansible_facts['os_family'] }}'.
+          This playbook supports macOS (Darwin) and Debian/Ubuntu.
+      when: ansible_facts['os_family'] not in ['Darwin', 'Debian']
+
+  roles:
+    - { role: core,     tags: ['core', 'server'] }
+    - { role: dotfiles, tags: ['dotfiles', 'server'] }
+    - { role: zsh,      tags: ['zsh', 'shell', 'server'] }
+    - { role: starship, tags: ['starship', 'shell', 'server'] }
+    - { role: tmux,     tags: ['tmux', 'server'] }
+    - { role: vim,      tags: ['vim', 'server'] }
+    - { role: fonts,    tags: ['fonts'] }
+    - { role: python,   tags: ['python', 'server'] }
+    - { role: docker,   tags: ['docker', 'server'] }
+    - { role: apps,     tags: ['apps'] }

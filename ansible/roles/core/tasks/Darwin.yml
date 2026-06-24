@@ -1,0 +1,14 @@
+---
+- name: Install core CLI tools (Homebrew)
+  community.general.homebrew:
+    name:
+      - git
+      - wget
+      - curl
+      - htop
+      - fd
+      - bat
+      - fzf
+      - ripgrep
+      - glow
+    state: present

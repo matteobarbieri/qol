@@ -1,0 +1,7 @@
+---
+- name: Install vim and ctags (Homebrew)
+  community.general.homebrew:
+    name:
+      - vim
+      - ctags
+    state: present

@@ -1,0 +1,73 @@
+---
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+  become: true
+
+- name: Install core CLI tools (apt)
+  ansible.builtin.apt:
+    name:
+      - git
+      - wget
+      - curl
+      - unzip
+      - htop
+      - fzf
+      - ripgrep
+      - fd-find       # binary is `fdfind` on Debian — symlinked to `fd` below
+      - bat           # binary is `batcat` on Debian — symlinked to `bat` below
+      - python3-apt   # required by the apt_repository module (Charm repo below)
+    state: present
+  become: true
+
+# glow is not in the default Debian/Ubuntu repos — add the official Charm repo.
+- name: Ensure apt keyrings directory exists
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: "0755"
+  become: true
+
+- name: Add Charm apt signing key
+  ansible.builtin.get_url:
+    url: https://repo.charm.sh/apt/gpg.key
+    dest: /etc/apt/keyrings/charm.asc
+    mode: "0644"
+  become: true
+
+- name: Add Charm apt repository
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by=/etc/apt/keyrings/charm.asc] https://repo.charm.sh/apt/ * *"
+    filename: charm
+    state: present
+  become: true
+
+- name: Install glow (apt)
+  ansible.builtin.apt:
+    name: glow
+    state: present
+    update_cache: true
+  become: true
+
+# Debian ships fd/bat under different binary names; expose the familiar names
+# on PATH via ~/.local/bin (which .zshrc/.aliases already pick up).
+- name: Ensure ~/.local/bin exists
+  ansible.builtin.file:
+    path: "{{ home_dir }}/.local/bin"
+    state: directory
+    mode: "0755"
+
+- name: Symlink fd -> fdfind
+  ansible.builtin.file:
+    src: /usr/bin/fdfind
+    dest: "{{ home_dir }}/.local/bin/fd"
+    state: link
+    force: true
+
+- name: Symlink bat -> batcat
+  ansible.builtin.file:
+    src: /usr/bin/batcat
+    dest: "{{ home_dir }}/.local/bin/bat"
+    state: link
+    force: true
